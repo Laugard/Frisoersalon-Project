@@ -1,7 +1,7 @@
 public class Medarbejder {
 
     private int MedarbejderId;
-    private String medarbejder;
+    private String medarbejderNavn;
     private String medarbejderKode;
     private String medarbejderEmail;
     private int medarbejderTelefon;
@@ -16,11 +16,11 @@ public class Medarbejder {
     }
 
     public String getMedarbejder() {
-        return medarbejder;
+        return medarbejderNavn;
     }
 
     public void setMedarbejder(String medarbejder) {
-        this.medarbejder = medarbejder;
+        this.medarbejderNavn = medarbejder;
     }
 
     public String getMedarbejderKode() {
@@ -53,7 +53,7 @@ public class Medarbejder {
 
     public Medarbejder(int medarbejderId, String medarbejder, String medarbejderKode, String medarbejderEmail, int medarbejderTelefon, int medarbejderStilling) {
         MedarbejderId = medarbejderId;
-        this.medarbejder = medarbejder;
+        this.medarbejderNavn = medarbejder;
         this.medarbejderKode = medarbejderKode;
         this.medarbejderEmail = medarbejderEmail;
         this.medarbejderTelefon = medarbejderTelefon;
