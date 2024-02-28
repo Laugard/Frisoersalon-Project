@@ -1,6 +1,8 @@
+package com.example.frisoersalonprojekt.Klasser;
+
 public class Medarbejder {
 
-    private int MedarbejderId;
+    private int medarbejderId;
     private String medarbejderNavn;
     private String medarbejderKode;
     private String medarbejderEmail;
@@ -8,11 +10,11 @@ public class Medarbejder {
     private int medarbejderStilling;
 
     public int getMedarbejderId() {
-        return MedarbejderId;
+        return medarbejderId;
     }
 
     public void setMedarbejderId(int medarbejderId) {
-        MedarbejderId = medarbejderId;
+        this.medarbejderId = medarbejderId;
     }
 
     public String getMedarbejder() {
@@ -52,7 +54,7 @@ public class Medarbejder {
     }
 
     public Medarbejder(int medarbejderId, String medarbejder, String medarbejderKode, String medarbejderEmail, int medarbejderTelefon, int medarbejderStilling) {
-        MedarbejderId = medarbejderId;
+        this.medarbejderId = medarbejderId;
         this.medarbejderNavn = medarbejder;
         this.medarbejderKode = medarbejderKode;
         this.medarbejderEmail = medarbejderEmail;

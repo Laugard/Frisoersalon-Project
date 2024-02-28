@@ -1,3 +1,5 @@
+package com.example.frisoersalonprojekt.Klasser;
+
 public class Kunde{
 
     private int kundeId;

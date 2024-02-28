@@ -1,3 +1,5 @@
+package com.example.frisoersalonprojekt.Klasser;
+
 public class Tidsbestilling {
 
     private int id;
