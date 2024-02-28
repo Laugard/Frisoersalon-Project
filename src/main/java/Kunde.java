@@ -1,10 +1,22 @@
-public class Kunde {
+public class Kunde{
 
     private int kundeId;
-    private String kundeNavn;
-    private String kundeKode;
+    private String kundeFornavn;
+    private String kundeEfternavn;
     private int kundeTelefon;
     private String kundeEmail;
+
+
+    public Kunde() {
+    }
+
+    public Kunde(int kundeId, String kundeFornavn, String kundeEfternavn, int kundeTelefon, String kundeEmail) {
+        this.kundeId = kundeId;
+        this.kundeFornavn = kundeFornavn;
+        this.kundeEfternavn = kundeEfternavn;
+        this.kundeTelefon = kundeTelefon;
+        this.kundeEmail = kundeEmail;
+    }
 
     public int getKundeId() {
         return kundeId;
@@ -14,20 +26,20 @@ public class Kunde {
         this.kundeId = kundeId;
     }
 
-    public String getKundeNavn() {
-        return kundeNavn;
+    public String getKundeFornavn() {
+        return kundeFornavn;
     }
 
-    public void setKundeNavn(String kundeNavn) {
-        this.kundeNavn = kundeNavn;
+    public void setKundeFornavn(String kundeFornavn) {
+        this.kundeFornavn = kundeFornavn;
     }
 
-    public String getKundeKode() {
-        return kundeKode;
+    public String getKundeEfternavn() {
+        return kundeEfternavn;
     }
 
-    public void setKundeKode(String kundeKode) {
-        this.kundeKode = kundeKode;
+    public void setKundeEfternavn(String kundeEfternavn) {
+        this.kundeEfternavn = kundeEfternavn;
     }
 
     public int getKundeTelefon() {
@@ -45,44 +57,7 @@ public class Kunde {
     public void setKundeEmail(String kundeEmail) {
         this.kundeEmail = kundeEmail;
     }
-
-    public Kunde(int kundeId, String kundeNavn, String kundeKode, int kundeTelefon, String kundeEmail) {
-        this.kundeId = kundeId;
-        this.kundeNavn = kundeNavn;
-        this.kundeKode = kundeKode;
-        this.kundeTelefon = kundeTelefon;
-        this.kundeEmail = kundeEmail;
-
-    }
-
-    @Override
-    public String toString() {
-        return "Kunde{" +
-                "kundeId=" + kundeId +
-                ", kundeNavn='" + kundeNavn + '\'' +
-                ", kundeKode='" + kundeKode + '\'' +
-                ", kundeTelefon=" + kundeTelefon +
-                ", kundeEmail='" + kundeEmail + '\'' +
-                '}';
-    }
-
-    public Kunde() {
-        super();
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
-
 }
+
+
+
