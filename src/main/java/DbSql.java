@@ -46,5 +46,7 @@ public class DbSql {
         }
     }
 
+    Hallo jeg hedder lauge
+
     // Yderligere metoder for databasemanipulation
 }
