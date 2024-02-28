@@ -1,32 +1,63 @@
 public class Tidsbestilling {
 
-private int tidsbestilling;
-private int dato;
-private int tidspunkt;
-private boolean status;
-private boolean anuller;
+    private int id;
+    private int medarbejderId;
+    private int kundeId;
+    private int serviceId;
+    private String tidspunkt;
+    private boolean status;
+    private boolean anuller;
 
-    public int getTidsbestilling() {
-        return tidsbestilling;
+    public Tidsbestilling() {
     }
 
-    public void setTidsbestilling(int tidsbestilling) {
-        this.tidsbestilling = tidsbestilling;
+    public Tidsbestilling(int id, int medarbejderId, int kundeId, int serviceId, String tidspunkt, boolean status, boolean anuller) {
+        this.id = id;
+        this.medarbejderId = medarbejderId;
+        this.kundeId = kundeId;
+        this.serviceId = serviceId;
+        this.tidspunkt = tidspunkt;
+        this.status = status;
+        this.anuller = anuller;
     }
 
-    public int getDato() {
-        return dato;
+    public int getId() {
+        return id;
     }
 
-    public void setDato(int dato) {
-        this.dato = dato;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getTidspunkt() {
+    public int getMedarbejderId() {
+        return medarbejderId;
+    }
+
+    public void setMedarbejderId(int medarbejderId) {
+        this.medarbejderId = medarbejderId;
+    }
+
+    public int getKundeId() {
+        return kundeId;
+    }
+
+    public void setKundeId(int kundeId) {
+        this.kundeId = kundeId;
+    }
+
+    public int getServiceId() {
+        return serviceId;
+    }
+
+    public void setServiceId(int serviceId) {
+        this.serviceId = serviceId;
+    }
+
+    public String getTidspunkt() {
         return tidspunkt;
     }
 
-    public void setTidspunkt(int tidspunkt) {
+    public void setTidspunkt(String tidspunkt) {
         this.tidspunkt = tidspunkt;
     }
 
@@ -42,16 +73,7 @@ private boolean anuller;
         return anuller;
     }
 
-    public Tidsbestilling(int tidsbestilling, int dato, int tidspunkt, boolean status, boolean anuller) {
-        this.tidsbestilling = tidsbestilling;
-        this.dato = dato;
-        this.tidspunkt = tidspunkt;
-        this.status = status;
-        this.anuller = anuller;
-    }
-
     public void setAnuller(boolean anuller) {
         this.anuller = anuller;
-
     }
 }
