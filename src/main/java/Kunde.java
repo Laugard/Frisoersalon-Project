@@ -6,7 +6,7 @@ public class Kunde{
     private int kundeTelefon;
     private String kundeEmail;
 
-
+hallo
     public Kunde() {
     }
 
