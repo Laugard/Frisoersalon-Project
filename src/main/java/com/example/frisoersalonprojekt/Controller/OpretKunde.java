@@ -1,4 +1,4 @@
 package com.example.frisoersalonprojekt.Controller;
 
-public class LoginController {
+public class OpretKunde {
 }

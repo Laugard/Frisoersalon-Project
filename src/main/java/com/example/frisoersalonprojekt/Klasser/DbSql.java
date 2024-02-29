@@ -9,7 +9,7 @@ public class DbSql {
 
 
 
-
+/*
     DbSql() throws SQLException {
         connection = null;
         Statement stmt = null;
@@ -145,7 +145,7 @@ public class DbSql {
             return false;
         }
     }
-
+*/
 
 
 

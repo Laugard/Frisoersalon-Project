@@ -1,4 +1,4 @@
 package com.example.frisoersalonprojekt.Controller;
 
-public class OpretMedarbejderController {
+public class OpretMedarbejder {
 }
