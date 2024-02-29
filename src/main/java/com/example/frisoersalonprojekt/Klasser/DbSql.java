@@ -3,34 +3,106 @@ package com.example.frisoersalonprojekt.Klasser;
 import java.sql.*;
 
 public class DbSql {
-    Connection connection;
+    public Connection connection;
+    private PreparedStatement Pstmt;
+    private Statement stmt;
+
+
+
 
     DbSql() throws SQLException {
         connection = null;
         Statement stmt = null;
+
         try {
             String url = "jdbc:mysql://localhost:3306/frisoersalon";
             connection = DriverManager.getConnection(url,"root","");
+
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
 
-    public void opretKunde(Kunde kunde) throws Exception {
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public void closeConnection() {
         try {
-            String sql = "INSERT INTO studerende (kundeId, kundeFornavn,kundeEfternavn, kundeTelefon, kundeEmail) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, kunde.getKundeId());
-            stmt.setString(2, kunde.getKundeFornavn());
-            stmt.setString(3, kunde.getKundeEfternavn());
-            stmt.setInt(4, kunde.getKundeTelefon());
-            stmt.setString(5, kunde.getKundeEmail());
-            stmt.executeUpdate();
-            stmt.close();
+            if (connection != null) {
+                connection.close();
+            }
         } catch (SQLException e) {
-            throw new Exception(e.getMessage());
+            e.printStackTrace();
         }
     }
+
+
+
+
+
+
+
+
+    public void OpretBruger() {
+        Connection connection = DbSql.getConnection();  // Hent forbindelsen fra MysqlConnection
+
+        String brugerNavn = OpretBrugerBrugerNavnTF.getText();
+        System.out.println("Checking if user exists: " + brugerNavn);
+
+        // Check om brugeren allerede existerer
+        if (getBruger(brugerNavn, connection) != null) {
+            System.out.println("User already exists: " + brugerNavn);
+            BrugerFindesLabel.setVisible(true);
+            OpretBrugerBrugerNavnTF.setText("");
+            OpretBrugerAdgangskodeTF.setText("");
+            return; // Afslut metode hvis bruger allerede existerer
+        }
+
+        try {
+            System.out.println("Creating user: " + brugerNavn);
+            String sql = "insert into wentzelevent_dk_db_GaveListe.Bruger (BrugerNavn,Password) values (?,?)";
+
+            try (PreparedStatement Pstmt = connection.prepareStatement(sql)) {
+                Pstmt.setString(1, brugerNavn);
+                Pstmt.setString(2, OpretBrugerAdgangskodeTF.getText());
+                Pstmt.execute();
+            }
+
+            System.out.println("User created: " + brugerNavn);
+            BrugerOprettetLabel.setVisible(true);
+            BrugerFindesLabel.setVisible(false);
+            OpretBrugerBrugerNavnTF.setText("");
+            OpretBrugerAdgangskodeTF.setText("");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        DbSql.closeConnection();
+    }
+
+    public String getBruger(String brugerNavn, Connection connection) {
+        System.out.println("GetBruger");
+        String dbBrugernavn = null;
+
+        try {
+            String sqlBruger = "SELECT * FROM wentzelevent_dk_db_GaveListe.Bruger WHERE BrugerNavn = ?";
+
+            try (PreparedStatement stmtBruger = connection.prepareStatement(sqlBruger)) {
+                stmtBruger.setString(1, brugerNavn);
+                try (ResultSet rsBruger = stmtBruger.executeQuery()) {
+                    if (rsBruger.next()) {
+                        dbBrugernavn = rsBruger.getString("BrugerNavn");
+                    }
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return dbBrugernavn;
+    }
+
+
 
 
 
