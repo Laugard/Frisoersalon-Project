@@ -25,4 +25,5 @@ public class Startside {
         Main m = new Main();
         m.changeScene("opretKunde.fxml");
     }
+
 }

@@ -9,7 +9,7 @@ public class DbSql {
 
 
 
-/*
+
     DbSql() throws SQLException {
         connection = null;
         Statement stmt = null;
@@ -145,8 +145,21 @@ public class DbSql {
             return false;
         }
     }
-*/
-
-
-
+    public ArrayList udskrivAlleTidsbestilling() {
+        ArrayList<tidspunkt> tidspunktList = new ArrayList<>();
+        try {
+            String sql = "select * from tidspunkt";
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                tidspunkt l = new tidspunkt();
+                l.setkundeId(rs.getInt(" kunde Id"));
+                l.setserviceId(rs.getInt("service Id"));
+                TidsbestillingList.add(l);
+            }
+            stmt.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return TidsbestillingList;
 }
