@@ -23,6 +23,7 @@ public class DbSql {
     }
 
 
+
     public void opretKunde(String fornavn, String efternavn, String telefon, String email, String brugernavn, String adgangskode) {
         String sql = "INSERT INTO Kunde (kundeFornavn, kundeEfternavn, kundeTelefon, kundeEmail, brugernavn, adgangskode) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -39,7 +40,18 @@ public class DbSql {
     }
 
 
-
+    public boolean validateLogin(String brugernavn, String adgangskode) {
+        String sql = "SELECT * FROM Kunde WHERE brugernavn = ? AND adgangskode = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, brugernavn);
+            pstmt.setString(2, adgangskode);
+            ResultSet rs = pstmt.executeQuery();
+            return rs.next(); // Hvis der findes en bruger, returneres true
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // I tilfælde af en fejl, returner false
+        }
+    }
 
 
 
@@ -108,19 +120,6 @@ public class DbSql {
 
 
 
-    public boolean authenticate(String username, String password) {
-        String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/frisoersalon");
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, username);
-            pstmt.setString(2, password);
-            ResultSet rs = pstmt.executeQuery();
-            return rs.next(); // Returnerer true, hvis brugeren findes
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-    }
 
 
     public ArrayList udskrivAlleTidsbestilling() {
