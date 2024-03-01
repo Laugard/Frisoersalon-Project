@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+
+<SplitPane dividerPositions="0.2185929648241206" fx:controller="com.example.frisoersalonprojekt.Controller.SletMedarbejder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+            <children>
+                <TableView fx:id="SletMedarbejderTabel" layoutX="213.0" layoutY="28.0" prefHeight="253.0" prefWidth="312.0">
+                    <columns>
+                        <TableColumn fx:id="fornavnColumn" prefWidth="103.0" text="Fornavn" />
+                        <TableColumn fx:id="efternavnColumn" prefWidth="103.0" text="Efternavn" />
+                        <TableColumn fx:id="emailColumn" prefWidth="106.0" text="Email" />
+                    </columns>
+                </TableView>
+                <Button fx:id="SletMedarbejderBtn" layoutX="59.0" layoutY="142.0" mnemonicParsing="false" text="Slet medarbejder" onAction="#handleSletMedarbejderAction" />
+            </children>
+        </AnchorPane>
+    </items>
+</SplitPane>

@@ -3,14 +3,23 @@ package com.example.frisoersalonprojekt.Klasser;
 public class Medarbejder {
 
     private int medarbejderId;
-    private String medarbejderNavn;
-    private String medarbejderKode;
+    private String medarbejderFornavn;
+    private String medarbejderEfternavn;
     private String medarbejderEmail;
-    private int medarbejderTelefon;
-    private int medarbejderStilling;
+    private String medarbejderTelefon;
+    private boolean admin;
+    private String brugernavn;
+    private String adgangskode;
 
-    public Medarbejder() {
-
+    public Medarbejder(int medarbejderId, String medarbejderFornavn, String medarbejderEfternavn, String medarbejderEmail, String medarbejderTelefon, boolean admin, String brugernavn, String adgangskode) {
+        this.medarbejderId = medarbejderId;
+        this.medarbejderFornavn = medarbejderFornavn;
+        this.medarbejderEfternavn = medarbejderEfternavn;
+        this.medarbejderEmail = medarbejderEmail;
+        this.medarbejderTelefon = medarbejderTelefon;
+        this.admin = admin;
+        this.brugernavn = brugernavn;
+        this.adgangskode = adgangskode;
     }
 
     public int getMedarbejderId() {
@@ -21,20 +30,20 @@ public class Medarbejder {
         this.medarbejderId = medarbejderId;
     }
 
-    public String getMedarbejder() {
-        return medarbejderNavn;
+    public String getMedarbejderFornavn() {
+        return medarbejderFornavn;
     }
 
-    public void setMedarbejder(String medarbejder) {
-        this.medarbejderNavn = medarbejder;
+    public void setMedarbejderFornavn(String medarbejderFornavn) {
+        this.medarbejderFornavn = medarbejderFornavn;
     }
 
-    public String getMedarbejderKode() {
-        return medarbejderKode;
+    public String getMedarbejderEfternavn() {
+        return medarbejderEfternavn;
     }
 
-    public void setMedarbejderKode(String medarbejderKode) {
-        this.medarbejderKode = medarbejderKode;
+    public void setMedarbejderEfternavn(String medarbejderEfternavn) {
+        this.medarbejderEfternavn = medarbejderEfternavn;
     }
 
     public String getMedarbejderEmail() {
@@ -45,29 +54,35 @@ public class Medarbejder {
         this.medarbejderEmail = medarbejderEmail;
     }
 
-    public int getMedarbejderTelefon() {
+    public String getMedarbejderTelefon() {
         return medarbejderTelefon;
     }
 
-    public void setMedarbejderTelefon(int medarbejderTelefon) {
+    public void setMedarbejderTelefon(String medarbejderTelefon) {
         this.medarbejderTelefon = medarbejderTelefon;
     }
 
-    public int getMedarbejderStilling() {
-        return medarbejderStilling;
+    public boolean isAdmin() {
+        return admin;
     }
 
-    public Medarbejder(int medarbejderId, String medarbejder, String medarbejderKode, String medarbejderEmail, int medarbejderTelefon, int medarbejderStilling) {
-        this.medarbejderId = medarbejderId;
-        this.medarbejderNavn = medarbejder;
-        this.medarbejderKode = medarbejderKode;
-        this.medarbejderEmail = medarbejderEmail;
-        this.medarbejderTelefon = medarbejderTelefon;
-        this.medarbejderStilling = medarbejderStilling;
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
-    public void setMedarbejderStilling(int medarbejderStilling) {
-        this.medarbejderStilling = medarbejderStilling;
+    public String getBrugernavn() {
+        return brugernavn;
+    }
 
+    public void setBrugernavn(String brugernavn) {
+        this.brugernavn = brugernavn;
+    }
+
+    public String getAdgangskode() {
+        return adgangskode;
+    }
+
+    public void setAdgangskode(String adgangskode) {
+        this.adgangskode = adgangskode;
     }
 }

@@ -32,6 +32,11 @@ public class AdminForside {
         Main m = new Main();
         m.changeScene("OpretKunde.fxml");
     }
+    @FXML
+    private void SkiftTilSletMedarbejder(ActionEvent event) throws IOException {
+        Main m = new Main();
+        m.changeScene("SletMedarbejder.fxml");
+    }
 
     @FXML
     private void LogUd(ActionEvent event) throws IOException {

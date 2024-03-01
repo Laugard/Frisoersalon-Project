@@ -97,9 +97,41 @@ public class DbSql {
 
 
 
+    public ArrayList<Medarbejder> hentMedarbejdere() {
+        ArrayList<Medarbejder> medarbejdere = new ArrayList<>();
+        String sql = "SELECT * FROM Medarbejdere";
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                Medarbejder medarbejder = new Medarbejder(
+                        rs.getInt("medarbejderId"),
+                        rs.getString("medarbejderFornavn"),
+                        rs.getString("medarbejderEfternavn"),
+                        rs.getString("medarbejderEmail"),
+                        rs.getString("medarbejderTelefon"),
+                        rs.getBoolean("admin"),
+                        rs.getString("brugernavn"),
+                        rs.getString("adgangskode"));
+                medarbejdere.add(medarbejder);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return medarbejdere;
+    }
 
 
-
+    public boolean sletMedarbejder(int medarbejderId) {
+        String sql = "DELETE FROM Medarbejdere WHERE medarbejderId = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, medarbejderId);
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 
 
@@ -125,61 +157,4 @@ public class DbSql {
 
 
 
-
-
-
-
-
-
-
-/*
-
-    public Kunde soegKunde(int kundeId) {
-        Kunde kunde = new Kunde();
-        kunde.setKundeId(kundeId);
-        try {
-            String sql = "select * from Kunde where kundeId =" + String.valueOf(kundeId);
-            Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            if (rs.next()) {
-                kunde.setKundeId(rs.getInt("kundeId"));
-                kunde.setKundeFornavn(rs.getString("kundeFornavn"));
-                kunde.setKundeEfternavn(rs.getString("kundeEfternavn"));
-                kunde.setKundeEmail(rs.getString("kundeEmail"));
-                kunde.setKundeTelefon(rs.getInt("KundeTelefon"));
-
-                return kunde;
-            }
-            stmt.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
-    }
-
-
-
-
-
-
-    public ArrayList udskrivAlleTidsbestilling() {
-        ArrayList<tidspunkt> tidspunktList = new ArrayList<>();
-        try {
-            String sql = "select * from tidspunkt";
-            Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                tidspunkt l = new tidspunkt();
-                l.setkundeId(rs.getInt(" kunde Id"));
-                l.setserviceId(rs.getInt("service Id"));
-                TidsbestillingList.add(l);
-            }
-            stmt.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return TidsbestillingList;
-
-    }
-*/
 }

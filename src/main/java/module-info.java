@@ -8,5 +8,6 @@ module com.example.frisoersalonprojekt {
     exports com.example.frisoersalonprojekt;
     opens com.example.frisoersalonprojekt.Controller to javafx.fxml;
     exports com.example.frisoersalonprojekt.Controller;
+    opens com.example.frisoersalonprojekt.Klasser to javafx.base, javafx.fxml;
 
 }
