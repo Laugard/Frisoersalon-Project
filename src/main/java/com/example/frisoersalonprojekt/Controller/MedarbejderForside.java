@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 
 import java.io.IOException;
 
-public class Forside {
+public class MedarbejderForside {
 
     @FXML
     private Button LogUdBtn;
