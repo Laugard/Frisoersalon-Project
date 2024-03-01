@@ -2,13 +2,24 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frisoersalonprojekt.Controller.Startside">
+<HBox alignment="CENTER" maxHeight="-Infinity" fx:controller="com.example.frisoersalonprojekt.Controller.Startside" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="LoginButton" onAction="#SkiftTilLogin" mnemonicParsing="false" text="Login" />
-      <Separator opacity="0.0" orientation="VERTICAL" prefHeight="36.0" prefWidth="2.0" />
-      <Button fx:id="OpretKundeButton" onAction="#SkiftTilOpretKunde" mnemonicParsing="false" text="Opret kunde" />
+      <VBox prefHeight="400.0" prefWidth="450.0" />
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="400.0">
+         <children>
+            <TextField alignment="CENTER" promptText="Brugernavn" fx:id="BrugernavnTF"/>
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="9.0" prefWidth="0.0" />
+            <TextField alignment="CENTER" promptText="Adgangskode" fx:id="AdgangskodeTF"/>
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="9.0" prefWidth="0.0" />
+            <Button fx:id="LoginButton" mnemonicParsing="false" onAction="#loginHandler" text="Login" />
+            <Separator opacity="0.0" orientation="VERTICAL" prefHeight="9.0" prefWidth="0.0" />
+            <Button fx:id="OpretKundeButton" mnemonicParsing="false" onAction="#SkiftTilOpretKunde" text="Opret kunde" />
+         </children>
+      </VBox>
    </children>
-</VBox>
+</HBox>
