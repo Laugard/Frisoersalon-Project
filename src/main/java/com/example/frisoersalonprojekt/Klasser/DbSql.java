@@ -8,9 +8,7 @@ public class DbSql {
     private Statement stmt;
 
 
-
-
-    DbSql() throws SQLException {
+    public DbSql() throws SQLException {
         connection = null;
         Statement stmt = null;
 
@@ -23,6 +21,38 @@ public class DbSql {
             throwables.printStackTrace();
         }
     }
+
+
+    public void opretKunde(String fornavn, String efternavn, String telefon, String email, String brugernavn, String adgangskode) {
+        String sql = "INSERT INTO Kunde (kundeFornavn, kundeEfternavn, kundeTelefon, kundeEmail, brugernavn, adgangskode) VALUES (?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, fornavn);
+            pstmt.setString(2, efternavn);
+            pstmt.setString(3, telefon);
+            pstmt.setString(4, email);
+            pstmt.setString(5, brugernavn);
+            pstmt.setString(6, adgangskode);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public Connection getConnection() {
         return connection;
@@ -45,67 +75,13 @@ public class DbSql {
 
 
 
-    public void OpretBruger() {
-        Connection connection = DbSql.getConnection();  // Hent forbindelsen fra MysqlConnection
-
-        String brugerNavn = OpretBrugerBrugerNavnTF.getText();
-        System.out.println("Checking if user exists: " + brugerNavn);
-
-        // Check om brugeren allerede existerer
-        if (getBruger(brugerNavn, connection) != null) {
-            System.out.println("User already exists: " + brugerNavn);
-            BrugerFindesLabel.setVisible(true);
-            OpretBrugerBrugerNavnTF.setText("");
-            OpretBrugerAdgangskodeTF.setText("");
-            return; // Afslut metode hvis bruger allerede existerer
-        }
-
-        try {
-            System.out.println("Creating user: " + brugerNavn);
-            String sql = "insert into wentzelevent_dk_db_GaveListe.Bruger (BrugerNavn,Password) values (?,?)";
-
-            try (PreparedStatement Pstmt = connection.prepareStatement(sql)) {
-                Pstmt.setString(1, brugerNavn);
-                Pstmt.setString(2, OpretBrugerAdgangskodeTF.getText());
-                Pstmt.execute();
-            }
-
-            System.out.println("User created: " + brugerNavn);
-            BrugerOprettetLabel.setVisible(true);
-            BrugerFindesLabel.setVisible(false);
-            OpretBrugerBrugerNavnTF.setText("");
-            OpretBrugerAdgangskodeTF.setText("");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        DbSql.closeConnection();
-    }
-
-    public String getBruger(String brugerNavn, Connection connection) {
-        System.out.println("GetBruger");
-        String dbBrugernavn = null;
-
-        try {
-            String sqlBruger = "SELECT * FROM wentzelevent_dk_db_GaveListe.Bruger WHERE BrugerNavn = ?";
-
-            try (PreparedStatement stmtBruger = connection.prepareStatement(sqlBruger)) {
-                stmtBruger.setString(1, brugerNavn);
-                try (ResultSet rsBruger = stmtBruger.executeQuery()) {
-                    if (rsBruger.next()) {
-                        dbBrugernavn = rsBruger.getString("BrugerNavn");
-                    }
-                }
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return dbBrugernavn;
-    }
 
 
 
 
 
+
+/*
     public Kunde soegKunde(int kundeId) {
         Kunde kunde = new Kunde();
         kunde.setKundeId(kundeId);
@@ -145,6 +121,8 @@ public class DbSql {
             return false;
         }
     }
+
+
     public ArrayList udskrivAlleTidsbestilling() {
         ArrayList<tidspunkt> tidspunktList = new ArrayList<>();
         try {
@@ -162,4 +140,7 @@ public class DbSql {
             throwables.printStackTrace();
         }
         return TidsbestillingList;
+
+    }*/
+
 }

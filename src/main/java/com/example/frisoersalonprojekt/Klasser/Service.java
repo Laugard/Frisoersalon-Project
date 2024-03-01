@@ -2,7 +2,7 @@ package com.example.frisoersalonprojekt.Klasser;
 
 public class Service {
 
-    private int id;
+    private int serviceId;
     private String serviceNavn;
     private int varighed;
 
@@ -10,18 +10,19 @@ public class Service {
     public Service() {
     }
 
-    public Service(int id, String serviceNavn, int varighed) {
-        this.id = id;
+    public Service(int serviceId, String serviceNavn, int varighed) {
+        this.serviceId = serviceId;
         this.serviceNavn = serviceNavn;
         this.varighed = varighed;
     }
 
-    public int getId() {
-        return id;
+
+    public int getServiceId() {
+        return serviceId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setServiceId(int serviceId) {
+        this.serviceId = serviceId;
     }
 
     public String getServiceNavn() {
@@ -39,7 +40,4 @@ public class Service {
     public void setVarighed(int varighed) {
         this.varighed = varighed;
     }
-
-
-
 }

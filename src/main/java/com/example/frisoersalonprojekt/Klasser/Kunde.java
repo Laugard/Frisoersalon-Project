@@ -9,6 +9,8 @@ public class Kunde{
     private String kundeEmail;
 
 
+
+
     public Kunde() {
     }
 
