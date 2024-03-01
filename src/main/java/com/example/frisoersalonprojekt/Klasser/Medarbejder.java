@@ -9,6 +9,10 @@ public class Medarbejder {
     private int medarbejderTelefon;
     private int medarbejderStilling;
 
+    public Medarbejder() {
+
+    }
+
     public int getMedarbejderId() {
         return medarbejderId;
     }
