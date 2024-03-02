@@ -4,18 +4,18 @@ public class Service {
 
     private int serviceId;
     private String serviceNavn;
-    private int varighed;
-
+    private String varighed;
+    private int pris;
 
     public Service() {
     }
 
-    public Service(int serviceId, String serviceNavn, int varighed) {
+    public Service(int serviceId, String serviceNavn, String varighed, int pris) {
         this.serviceId = serviceId;
         this.serviceNavn = serviceNavn;
         this.varighed = varighed;
+        this.pris = pris;
     }
-
 
     public int getServiceId() {
         return serviceId;
@@ -33,11 +33,19 @@ public class Service {
         this.serviceNavn = serviceNavn;
     }
 
-    public int getVarighed() {
+    public String getVarighed() {
         return varighed;
     }
 
-    public void setVarighed(int varighed) {
+    public void setVarighed(String varighed) {
         this.varighed = varighed;
+    }
+
+    public int getPris() {
+        return pris;
+    }
+
+    public void setPris(int pris) {
+        this.pris = pris;
     }
 }

@@ -20,13 +20,14 @@
                   <Separator opacity="0.0" prefHeight="0.0" prefWidth="21.0" />
                   <Button fx:id="OpretKundeBtn" mnemonicParsing="false" onAction="#SkiftTilOpretKunde" text="Opret Kunde" />
                   <Separator opacity="0.0" prefHeight="0.0" prefWidth="21.0" />
-                  <Button fx:id="SletMedarbejderBtn" mnemonicParsing="false" text="Slet Medarbejder" onAction="#SkiftTilSletMedarbejder"/>
+                  <Button fx:id="SletMedarbejderBtn" mnemonicParsing="false" onAction="#SkiftTilSletMedarbejder" text="Slet Medarbejder" />
                   <Separator opacity="0.0" prefHeight="0.0" prefWidth="22.0" />
                   <Button fx:id="LogUdBtn" mnemonicParsing="false" onAction="#LogUd" text="Log ud" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="328.0" prefWidth="600.0">
                <children>
+                  <Button fx:id="OpretServiceBtn" mnemonicParsing="false" text="Opret Service" onAction="#SkiftTilOpretService" />
                   <TableView fx:id="TiderTable" prefHeight="328.0" prefWidth="376.0">
                     <columns>
                       <TableColumn prefWidth="75.0" text="Mandag" />

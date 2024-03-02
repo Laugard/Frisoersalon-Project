@@ -40,6 +40,53 @@ public class DbSql {
         }
     }
 
+    public boolean opretService(String serviceNavn, String varighed, int pris) {
+        String sql = "INSERT INTO Service (serviceNavn, varighed, pris) VALUES (?, ?, ?)";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, serviceNavn);
+            pstmt.setString(2, varighed);
+            pstmt.setInt(3, pris);
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public ArrayList<Service> hentAlleServices() {
+        ArrayList<Service> services = new ArrayList<>();
+        String sql = "SELECT * FROM Service";
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                Service service = new Service(
+                        rs.getInt("serviceId"),
+                        rs.getString("serviceNavn"),
+                        rs.getString("varighed"),
+                        rs.getInt("pris"));
+                services.add(service);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return services;
+    }
+
+    public boolean sletService(int serviceId) {
+        String sql = "DELETE FROM Service WHERE serviceId = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, serviceId);
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
 
     public String validateLogin(String brugernavn, String adgangskode) {
         // Tjek først i Medarbejdere tabellen

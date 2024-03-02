@@ -18,6 +18,8 @@ public class AdminForside {
     @FXML
     private Button OpretKundeBtn;
     @FXML
+    private Button OpretServiceBtn;
+    @FXML
     private TableView TiderTable;
     @FXML
     private Button LogUdBtn;
@@ -37,7 +39,11 @@ public class AdminForside {
         Main m = new Main();
         m.changeScene("SletMedarbejder.fxml");
     }
-
+    @FXML
+    private void SkiftTilOpretService(ActionEvent event) throws IOException {
+        Main m = new Main();
+        m.changeScene("OpretService.fxml");
+    }
     @FXML
     private void LogUd(ActionEvent event) throws IOException {
         Main m = new Main();
