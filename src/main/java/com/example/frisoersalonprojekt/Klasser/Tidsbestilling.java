@@ -1,34 +1,35 @@
 package com.example.frisoersalonprojekt.Klasser;
 
+import java.sql.Timestamp;
+
 public class Tidsbestilling {
 
-    private int id;
+    private int tidsbestillingsId;
     private int medarbejderId;
     private int kundeId;
     private int serviceId;
-    private String tidspunkt;
-    private boolean status;
-    private boolean anuller;
+    private Timestamp tidspunkt;
+    private String status;
+
 
     public Tidsbestilling() {
     }
 
-    public Tidsbestilling(int id, int medarbejderId, int kundeId, int serviceId, String tidspunkt, boolean status, boolean anuller) {
-        this.id = id;
+    public Tidsbestilling(int tidsbestillingsId, int medarbejderId, int kundeId, int serviceId, Timestamp tidspunkt, String status) {
+        this.tidsbestillingsId = tidsbestillingsId;
         this.medarbejderId = medarbejderId;
         this.kundeId = kundeId;
         this.serviceId = serviceId;
         this.tidspunkt = tidspunkt;
         this.status = status;
-        this.anuller = anuller;
     }
 
-    public int getId() {
-        return id;
+    public int getTidsbestillingsId() {
+        return tidsbestillingsId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setTidsbestillingsId(int tidsbestillingsId) {
+        this.tidsbestillingsId = tidsbestillingsId;
     }
 
     public int getMedarbejderId() {
@@ -55,27 +56,19 @@ public class Tidsbestilling {
         this.serviceId = serviceId;
     }
 
-    public String getTidspunkt() {
+    public Timestamp getTidspunkt() {
         return tidspunkt;
     }
 
-    public void setTidspunkt(String tidspunkt) {
+    public void setTidspunkt(Timestamp tidspunkt) {
         this.tidspunkt = tidspunkt;
     }
 
-    public boolean isStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
-    }
-
-    public boolean isAnuller() {
-        return anuller;
-    }
-
-    public void setAnuller(boolean anuller) {
-        this.anuller = anuller;
     }
 }

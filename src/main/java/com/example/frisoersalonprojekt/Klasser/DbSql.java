@@ -1,7 +1,14 @@
 package com.example.frisoersalonprojekt.Klasser;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 public class DbSql {
     public Connection connection;
@@ -90,37 +97,38 @@ public class DbSql {
 
     public String validateLogin(String brugernavn, String adgangskode) {
         // Tjek først i Medarbejdere tabellen
-        String medarbejderSql = "SELECT admin FROM Medarbejdere WHERE brugernavn = ? AND adgangskode = ?";
+        String medarbejderSql = "SELECT medarbejderId, admin FROM Medarbejdere WHERE brugernavn = ? AND adgangskode = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(medarbejderSql)) {
             pstmt.setString(1, brugernavn);
             pstmt.setString(2, adgangskode);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) { // Hvis der findes en medarbejder
                 boolean isAdmin = rs.getBoolean("admin");
-                if (isAdmin) {
-                    return "AdminForside"; // Hvis medarbejderen er admin
-                } else {
-                    return "MedarbejderForside"; // Hvis medarbejderen ikke er admin
-                }
+                int medarbejderId = rs.getInt("medarbejderId");
+                SessionManager.setLoggedInUser(medarbejderId, "medarbejder");
+                return isAdmin ? "AdminForside" : "MedarbejderForside";
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         // Hvis ikke fundet i Medarbejdere, tjek i Kunde tabellen
-        String kundeSql = "SELECT * FROM kunde WHERE brugernavn = ? AND adgangskode = ?";
+        String kundeSql = "SELECT kundeId FROM Kunde WHERE brugernavn = ? AND adgangskode = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(kundeSql)) {
             pstmt.setString(1, brugernavn);
             pstmt.setString(2, adgangskode);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) { // Hvis der findes en kunde
-                return "Forside"; // Henvise til kundeforsiden
+                int kundeId = rs.getInt("kundeId");
+                SessionManager.setLoggedInUser(kundeId, "kunde");
+                return "Forside";
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return "LoginFejl"; // Hvis ingen bruger er fundet, eller der opstår en fejl
+        SessionManager.resetLoggedInUser();
+        return "LoginFejl";
     }
 
 
@@ -168,6 +176,8 @@ public class DbSql {
     }
 
 
+
+
     public boolean sletMedarbejder(int medarbejderId) {
         String sql = "DELETE FROM Medarbejdere WHERE medarbejderId = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -179,6 +189,106 @@ public class DbSql {
             return false;
         }
     }
+
+    public boolean erTidOptaget(int medarbejderId, Timestamp tidspunkt) {
+        String sql = "SELECT COUNT(*) FROM Tidsbestillinger WHERE medarbejderId = ? AND tidspunkt = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, medarbejderId);
+            pstmt.setTimestamp(2, tidspunkt);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+    public boolean opretTidsbestilling(int kundeId, int medarbejderId, int serviceId, Timestamp tidspunkt) {
+        if (!erTidOptaget(medarbejderId, tidspunkt)) {
+            String sql = "INSERT INTO Tidsbestillinger (medarbejderId, kundeId, serviceId, tidspunkt, status) VALUES (?, ?, ?, ?, 'PLANLAGT')";
+            try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+                pstmt.setInt(1, medarbejderId);
+                pstmt.setInt(2, kundeId);
+                pstmt.setInt(3, serviceId);
+                pstmt.setTimestamp(4, tidspunkt);
+                int affectedRows = pstmt.executeUpdate();
+                return affectedRows > 0;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Tidsrummet er allerede optaget.");
+        }
+        return false;
+    }
+
+
+
+    public Map<String, Integer> hentMedarbejdereMedId() {
+        Map<String, Integer> medarbejderMap = new HashMap<>();
+        String sql = "SELECT medarbejderId, medarbejderFornavn, medarbejderEfternavn FROM Medarbejdere";
+        try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                String navn = rs.getString("medarbejderFornavn") + " " + rs.getString("medarbejderEfternavn");
+                Integer id = rs.getInt("medarbejderId");
+                medarbejderMap.put(navn, id);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return medarbejderMap;
+    }
+
+
+
+    public List<String> hentServiceNavne() {
+        List<String> services = new ArrayList<>();
+        String sql = "SELECT serviceNavn FROM Service";
+        try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                services.add(rs.getString("serviceNavn"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return services;
+    }
+
+    public int findServiceId(String serviceName) {
+        String sql = "SELECT serviceId FROM Service WHERE serviceNavn = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, serviceName);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("serviceId");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1; // Returner -1 hvis servicen ikke findes
+    }
+
+
+
+    public List<Timestamp> hentLedigeTidspunkter(int medarbejderId, LocalDate dato) {
+        List<Timestamp> ledigeTidspunkter = new ArrayList<>();
+        // Antagelse: Åbningstider fra 9:00 til 17:00, booking hver halve time
+        LocalDateTime startTid = dato.atTime(9, 0);
+        LocalDateTime slutTid = dato.atTime(17, 0);
+        while (startTid.isBefore(slutTid)) {
+            Timestamp tidspunkt = Timestamp.valueOf(startTid);
+            if (!erTidOptaget(medarbejderId, tidspunkt)) {
+                ledigeTidspunkter.add(tidspunkt);
+            }
+            startTid = startTid.plusMinutes(30); // Gå til næste tidsinterval
+        }
+        return ledigeTidspunkter;
+    }
+
+
 
 
 
@@ -198,10 +308,4 @@ public class DbSql {
             e.printStackTrace();
         }
     }
-
-
-
-
-
-
 }

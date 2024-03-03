@@ -7,7 +7,6 @@ public class Scheduler {
         this.dbSql = dbSql;
     }
 
-    /*public boolean scheduleAppointment(com.example.frisoersalonprojekt.Klasser.Tidsbestilling tidsbestilling) {
-        return dbSql.createAppointment(tidsbestilling);
-    }*/
+
+
 }

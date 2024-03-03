@@ -11,6 +11,8 @@ public class Forside {
 
     @FXML
     private Button LogUdBtn;
+    @FXML
+    private Button bestilTidBtn;
 
     @FXML
     private void LogUd(ActionEvent event) throws IOException {
@@ -19,4 +21,13 @@ public class Forside {
         System.out.println("Du er nu logget af");
 
     }
+    @FXML
+    private void SkiftTilTidsbestilling(ActionEvent event) throws IOException {
+        Main m = new Main();
+        m.changeScene("Tidsbestilling.fxml");
+
+    }
+
+
+
 }
