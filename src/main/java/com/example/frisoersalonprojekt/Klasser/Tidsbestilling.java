@@ -10,18 +10,21 @@ public class Tidsbestilling {
     private int serviceId;
     private Timestamp tidspunkt;
     private String status;
-
+    private String serviceNavn;
+    private int pris;
 
     public Tidsbestilling() {
     }
 
-    public Tidsbestilling(int tidsbestillingsId, int medarbejderId, int kundeId, int serviceId, Timestamp tidspunkt, String status) {
+    public Tidsbestilling(int tidsbestillingsId, int medarbejderId, int kundeId, int serviceId, Timestamp tidspunkt, String status, String serviceNavn, int pris) {
         this.tidsbestillingsId = tidsbestillingsId;
         this.medarbejderId = medarbejderId;
         this.kundeId = kundeId;
         this.serviceId = serviceId;
         this.tidspunkt = tidspunkt;
         this.status = status;
+        this.serviceNavn = serviceNavn;
+        this.pris = pris;
     }
 
     public int getTidsbestillingsId() {
@@ -70,5 +73,21 @@ public class Tidsbestilling {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getServiceNavn() {
+        return serviceNavn;
+    }
+
+    public void setServiceNavn(String serviceNavn) {
+        this.serviceNavn = serviceNavn;
+    }
+
+    public int getPris() {
+        return pris;
+    }
+
+    public void setPris(int pris) {
+        this.pris = pris;
     }
 }

@@ -244,12 +244,14 @@ public class DbSql {
 
 
 
-    public List<String> hentServiceNavne() {
+    public List<String> hentServiceNavneMedPriser() {
         List<String> services = new ArrayList<>();
-        String sql = "SELECT serviceNavn FROM Service";
+        String sql = "SELECT serviceNavn, Pris FROM Service";
         try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                services.add(rs.getString("serviceNavn"));
+                String serviceNavn = rs.getString("serviceNavn");
+                double Pris = rs.getDouble("Pris");
+                services.add(serviceNavn + " - Pris: " + Pris + " kr");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -257,7 +259,13 @@ public class DbSql {
         return services;
     }
 
-    public int findServiceId(String serviceName) {
+
+    public int findServiceId(String serviceItem) {
+        // Split serviceItem strengen for at ekstrahere servicenavnet
+        String[] parts = serviceItem.split(" - Pris: ");
+        String serviceName = parts[0]; // Det faktiske servicenavn er den første del
+
+        // Her er din eksisterende SQL-logik, nu anvendt med det ekstraherede servicenavn
         String sql = "SELECT serviceId FROM Service WHERE serviceNavn = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, serviceName);
@@ -270,6 +278,7 @@ public class DbSql {
         }
         return -1; // Returner -1 hvis servicen ikke findes
     }
+
 
 
 
@@ -289,9 +298,71 @@ public class DbSql {
     }
 
 
+    public List<Tidsbestilling> hentAlleTidsbestillinger() {
+        List<Tidsbestilling> tidsbestillinger = new ArrayList<>();
+        int loggetIndKundeId = SessionManager.getLoggedInKundeId();
+
+        // Tjek om en kunde er logget ind
+        if (loggetIndKundeId == -1) {
+            // Ingen kunde er logget ind, måske returner en tom liste eller håndter det på en anden måde
+            return tidsbestillinger;
+        }
+
+        // Opdateret SQL-forespørgsel til kun at hente tidsbestillinger for den logget ind kunde
+        String sql = "SELECT T.tidsbestillingId, T.medarbejderId, T.kundeId, T.serviceId, T.tidspunkt, T.status, S.serviceNavn, S.pris " +
+                "FROM Tidsbestillinger T " +
+                "INNER JOIN Service S ON T.serviceId = S.serviceId " +
+                "WHERE T.kundeId = ?"; // Bruger parameterbinding for at undgå SQL-injektion
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, loggetIndKundeId); // Sætter den logget ind kundeId som parameter til forespørgslen
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    int tidsbestillingsId = rs.getInt("tidsbestillingId");
+                    int medarbejderId = rs.getInt("medarbejderId");
+                    int kundeId = rs.getInt("kundeId");
+                    int serviceId = rs.getInt("serviceId");
+                    Timestamp tidspunkt = rs.getTimestamp("tidspunkt");
+                    String status = rs.getString("status");
+                    String serviceNavn = rs.getString("serviceNavn");
+                    int pris = rs.getInt("pris");
+
+                    // Opret et Tidsbestilling objekt med hentede data
+                    Tidsbestilling tidsbestilling = new Tidsbestilling(tidsbestillingsId, medarbejderId, kundeId, serviceId, tidspunkt, status, serviceNavn, pris);
+
+                    tidsbestillinger.add(tidsbestilling);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tidsbestillinger;
+    }
 
 
 
+    public void opdaterStatusTilAflyst(int tidsbestillingsId) {
+        String sql = "UPDATE Tidsbestillinger SET status = 'Aflyst' WHERE tidsbestillingId = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, tidsbestillingsId);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void opdaterTidsbestillingTidspunkt(int tidsbestillingsId, Timestamp nytTidspunkt) {
+        String sql = "UPDATE Tidsbestillinger SET tidspunkt = ? WHERE tidsbestillingId = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setTimestamp(1, nytTidspunkt);
+            pstmt.setInt(2, tidsbestillingsId);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

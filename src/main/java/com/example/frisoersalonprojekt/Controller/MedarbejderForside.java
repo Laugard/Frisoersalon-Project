@@ -37,6 +37,7 @@ public class MedarbejderForside {
         System.out.println("Du er nu logget af");
 
 
+
     // Method to initialize the TableView with data
     /*
     public void initializeTableView(List<Medarbejder> medarbejdere) {
