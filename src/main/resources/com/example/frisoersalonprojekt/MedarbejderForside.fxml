@@ -14,7 +14,7 @@
     <children>
         <ImageView depthTest="ENABLE" fitHeight="888.0" fitWidth="869.0" nodeOrientation="INHERIT" opacity="0.23" preserveRatio="true">
             <image>
-                <Image url="@../../../grains.png" />
+                <Image url="@Images/grains.png" />
             </image>
         </ImageView>
         <Button fx:id="LogUdBtn" layoutX="120.0" layoutY="607.0" mnemonicParsing="false" onAction="#LogUd" prefHeight="74.0" prefWidth="122.0" scaleX="2.0" scaleY="2.0" styleClass="myButton" text="Log ud" />

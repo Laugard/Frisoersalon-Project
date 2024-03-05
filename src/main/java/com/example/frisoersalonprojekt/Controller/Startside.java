@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -21,6 +22,8 @@ public class Startside {
     private TextField BrugernavnTF;
     @FXML
     private TextField AdgangskodeTF;
+@FXML
+private ImageView frisoer;
 
 
     private DbSql dbSql = new DbSql();

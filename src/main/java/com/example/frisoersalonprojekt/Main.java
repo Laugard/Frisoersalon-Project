@@ -16,8 +16,6 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Startside.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        String css = this.getClass().getResource("StyleSheet.css").toExternalForm();
-        scene.getStylesheets().add(css);
         primaryStage.setTitle("Monikas Frisørsalon");
 
         // Here you can directly set the width and height of the stage
