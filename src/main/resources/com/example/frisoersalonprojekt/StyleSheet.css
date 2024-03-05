@@ -1,0 +1,44 @@
+.text-field-style {
+    -fx-prompt-text-fill: #A0A0A0;
+    -fx-text-inner-color: black; /* Text color */
+    -fx-background-color: white; /* Background color */
+    -fx-border-color: #D0D0D0; /* Border color */
+    -fx-border-width: 2px; /* Border width */
+    -fx-border-radius: 5px; /* Border radius to match the background radius */
+    -fx-background-radius: 5px; /* Background radius for rounded corners */
+    -fx-padding: 8px; /* Padding inside the text field */
+    -fx-font-size: 14px; /* Font size */
+    -fx-font-family: "Arial", sans-serif;
+}
+
+.text-field-style:hover {
+    -fx-background-color: #121212; /* Slightly lighter black on hover for feedback */
+}
+
+.text-field-style:focused {
+    -fx-border-color: #4DA0B0; /* Focus ring color */
+    -fx-background-color: white; /* Ensure the background matches the non-focused state */
+}
+
+
+
+.button {
+    -fx-padding: 10px 20px; /* Comfortable padding */
+    -fx-background-radius: 30px; /* Rounded corners */
+    -fx-text-fill: #FFFFFF; /* White text */
+    -fx-font-size: 14px; /* Readable font size */
+    -fx-background-color: #646464; /* Dark grey background that stands out on black */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0); /* Subtle shadow for depth */
+}
+
+.button:hover {
+    -fx-background-color: white; /* Lighter grey on hover for visual feedback */
+    -fx-text-fill: black; /* Brighter text */
+    -fx-effect: dropshadow(three-pass-box, rgba(124,252,0,0.8), 10, 0, 0, 0); /* Neon-like glow effect */
+}
+
+
+/* Assuming the black background is set on the container of the button */
+.container {
+    -fx-background-color: #000000; /* Pure black background */
+}
