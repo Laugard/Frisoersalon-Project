@@ -13,6 +13,10 @@ public class Forside {
     private Button LogUdBtn;
     @FXML
     private Button bestilTidBtn;
+    @FXML
+    private Button redigerTidBtn;
+
+
 
     @FXML
     private void LogUd(ActionEvent event) throws IOException {
@@ -28,6 +32,13 @@ public class Forside {
 
     }
 
+
+    @FXML
+    private void SkiftTilRedigerTid(ActionEvent event) throws IOException {
+        Main m = new Main();
+        m.changeScene("RedigerTid.fxml");
+
+    }
 
 
 }

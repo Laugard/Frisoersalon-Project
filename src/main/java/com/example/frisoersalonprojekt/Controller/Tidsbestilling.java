@@ -52,9 +52,11 @@ public class Tidsbestilling {
 
 
     private void loadServices() {
-        List<String> services = dbSql.hentServiceNavne();
+        List<String> services = dbSql.hentServiceNavneMedPriser();
+        serviceComboBox.getItems().clear(); // Sørg for, at comboboxen er tom før tilføjelse
         serviceComboBox.getItems().addAll(services);
     }
+
 
     private int findMedarbejderId(String medarbejderNavn) {
         return medarbejderIdMap.getOrDefault(medarbejderNavn, -1); // Returner -1 eller et andet ugyldigt ID, hvis navnet ikke findes
@@ -124,6 +126,7 @@ public class Tidsbestilling {
             showAlert("Fejl", "Der opstod en fejl under oprettelse af tidsbestilling.");
         }
     }
+
 
 
     private void showAlert(String title, String message) {
