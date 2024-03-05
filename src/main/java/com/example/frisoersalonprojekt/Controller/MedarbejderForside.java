@@ -9,8 +9,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MedarbejderForside {
@@ -35,20 +42,23 @@ public class MedarbejderForside {
         Main m = new Main();
         m.changeScene("Startside.fxml");
         System.out.println("Du er nu logget af");
+    }
 
 
 
-    // Method to initialize the TableView with data
+    }
+
     /*
     public void initializeTableView(List<Medarbejder> medarbejdere) {
         ObservableList<Medarbejder> medarbejderList = FXCollections.observableArrayList(medarbejdere);
 
-        medarbejderColumn.setCellValueFactory(cellData -> cellData.getValue().//metode der finder medarbejdernavnet fra bestillingen());
-        tidColumn.setCellValueFactory(cellData -> /* metode der finder tiden fra bestillingen /);
-        serviceColumn.setCellValueFactory(cellData -> /* metode der findes service for bestillingen /);
+        medarbejderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(getWorkerName(cellData.getValue().getMedarbejderId())));
+        //  tidColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTiden()));
+        //serviceColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getService()));
 
-        medarbejderTableView.setItems(medarbejderList);*/
-
-
+        medarbejderTableView.setItems(medarbejderList);
     }
-}
+*/
+
+
+

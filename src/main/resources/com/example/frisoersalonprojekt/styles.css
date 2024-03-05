@@ -1,0 +1,67 @@
+VBox {
+    -fx-spacing: 10;
+    -fx-padding: 10;
+}
+
+HBox {
+    -fx-spacing: 15;
+}
+
+Button {
+    -fx-font-size: 14px;
+    -fx-padding: 8 12;
+    -fx-background-color: linear-gradient(to bottom right, #393d54, #256b51);
+    -fx-text-fill: #fff;
+    -fx-background-radius: 15 15 15 15;
+    -fx-border-width: 0; /* Remove the border width */
+    align-items: center;
+    background: #0e0e10;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    transition: background 0.5s ease;
+    width: 100%;
+}
+
+Label {
+    -fx-font-size: 16px;
+}
+
+TableView {
+    -fx-background-color: linear-gradient(to bottom right, #494e69, #256b51);
+    -fx-border-color: linear-gradient(to bottom right, #3a3e54, #256b51);
+    -fx-border-radius: 8px;
+    -fx-padding: 10px;
+}
+
+TableColumn {
+    -fx-alignment: CENTER;
+    -fx-background-color: linear-gradient(to bottom, #4e5877, #315b45);
+    -fx-border-color: linear-gradient(to bottom, #4f587a, #315b45);
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+}
+
+TableColumn:even {
+    -fx-background-color: linear-gradient(to bottom, #515c7e, #315b45);
+}
+
+TableColumn:odd {
+    -fx-background-color: linear-gradient(to bottom, #585f82, #315b45);
+}
+
+TableColumn:hover {
+    -fx-background-color: #4caf50;
+    -fx-text-fill: #fff;
+}
+
+TableColumn:selected {
+    -fx-background-color: #4caf50;
+    -fx-text-fill: #fff;
+}
+
+TableColumn:empty {
+    -fx-background-color: linear-gradient(to bottom, #394264, #315b45);
+}
