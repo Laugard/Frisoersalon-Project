@@ -31,6 +31,7 @@ public class Startside {
     @FXML
     private void loginHandler() throws IOException {
         String loginResult = dbSql.validateLogin(BrugernavnTF.getText(), AdgangskodeTF.getText());
+
         switch (loginResult) {
             case "AdminForside":
                 // Omdiriger til AdminForside

@@ -42,3 +42,8 @@
 .container {
     -fx-background-color: #000000; /* Pure black background */
 }
+
+#pane{
+    -fx-background-image: url("BilledeTilFrisoer.jpg");
+
+}
