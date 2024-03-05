@@ -9,7 +9,7 @@
 
 <!-- Import statement for DatePicker -->
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frisoersalonprojekt.Controller.Tidsbestilling">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frisoersalonprojekt.Controller.Tidsbestilling">
     <children>
         <Label layoutX="186.0" layoutY="111.0" text="Dette er tidsbestilling" />
         <ComboBox fx:id="medarbejderComboBox" layoutX="123.0" layoutY="200.0" promptText="Vælg en medarbejder">
