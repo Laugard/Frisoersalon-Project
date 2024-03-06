@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Tidsbestilling {
+public class TidsbestillingController {
 
     @FXML
     private ComboBox<String> medarbejderComboBox;
@@ -40,7 +40,7 @@ public class Tidsbestilling {
 
     private DbSql dbSql = new DbSql();
 
-    public Tidsbestilling() throws SQLException {
+    public TidsbestillingController() throws SQLException {
     }
 
     @FXML

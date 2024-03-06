@@ -21,13 +21,10 @@ public class SletMedarbejder {
     private Button tilbageTilForsideBtn;
     @FXML
     private TableView<Medarbejder> SletMedarbejderTabel;
-
     @FXML
     private TableColumn<Medarbejder, String> fornavnColumn;
-
     @FXML
     private TableColumn<Medarbejder, String> efternavnColumn;
-
     @FXML
     private TableColumn<Medarbejder, String> emailColumn;
 

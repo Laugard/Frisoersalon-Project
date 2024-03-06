@@ -385,6 +385,44 @@ public class DbSql {
         }
     }
 
+    public List<Tidsbestilling> hentTidsbestillingerForMedarbejder() {
+        List<Tidsbestilling> tidsbestillinger = new ArrayList<>();
+        int loggetIndMedarbejderId = SessionManager.getLoggedInMedarbejderId();
+
+        if (loggetIndMedarbejderId == -1) {
+            // Ingen medarbejder er logget ind, returner en tom liste
+            return tidsbestillinger;
+        }
+
+        String sql = "SELECT T.tidsbestillingId, T.medarbejderId, T.kundeId, T.serviceId, T.tidspunkt, T.status, S.serviceNavn, S.pris " +
+                "FROM Tidsbestillinger T " +
+                "INNER JOIN Service S ON T.serviceId = S.serviceId " +
+                "WHERE T.medarbejderId = ? AND T.tidspunkt > NOW() " + // Vælg kun fremtidige tidsbestillinger
+                "ORDER BY T.tidspunkt ASC"; // Sorter efter tidspunkt i stigende rækkefølge
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, loggetIndMedarbejderId);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    int tidsbestillingsId = rs.getInt("tidsbestillingId");
+                    int medarbejderId = rs.getInt("medarbejderId");
+                    int kundeId = rs.getInt("kundeId");
+                    int serviceId = rs.getInt("serviceId");
+                    Timestamp tidspunkt = rs.getTimestamp("tidspunkt");
+                    String status = rs.getString("status");
+                    String serviceNavn = rs.getString("serviceNavn");
+                    int pris = rs.getInt("pris");
+
+                    Tidsbestilling tidsbestilling = new Tidsbestilling(tidsbestillingsId, medarbejderId, kundeId, serviceId, tidspunkt, status, serviceNavn, pris);
+                    tidsbestillinger.add(tidsbestilling);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tidsbestillinger;
+    }
 
     public Connection getConnection() {
         return connection;

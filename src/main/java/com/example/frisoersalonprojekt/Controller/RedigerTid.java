@@ -2,11 +2,15 @@ package com.example.frisoersalonprojekt.Controller;
 
 import com.example.frisoersalonprojekt.Klasser.DbSql;
 import com.example.frisoersalonprojekt.Klasser.Tidsbestilling;
+import com.example.frisoersalonprojekt.Main;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.DatePicker;
+
+import java.io.IOException;
 import java.util.List;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -40,6 +44,9 @@ public class RedigerTid {
     private ComboBox<Timestamp> tidspunktComboBox;
     @FXML
     private DatePicker datoPicker;
+    @FXML
+    private Button tilbageTilForsideBtn;
+
 
     private DbSql dbSql = new DbSql();
 
@@ -152,7 +159,12 @@ public class RedigerTid {
     }
 
 
+    @FXML
+    private void tilbageTilForside(ActionEvent event) throws IOException {
+        Main m = new Main();
+        m.changeScene("Forside.fxml");
 
+    }
 
 
 }

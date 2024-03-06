@@ -60,7 +60,7 @@
          <effect>
             <DropShadow />
          </effect></Button>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="HARD_LIGHT" fill="WHITE" height="85.0" layoutX="13.0" layoutY="145.0" opacity="0.72" stroke="WHITE" strokeLineCap="BUTT" width="600.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="HARD_LIGHT" fill="WHITE" height="86.0" layoutX="15.0" layoutY="79.0" opacity="0.72" stroke="WHITE" strokeLineCap="BUTT" width="289.0">
          <effect>
             <Bloom threshold="1.0">
                <input>
@@ -69,15 +69,15 @@
             </Bloom>
          </effect>
       </Rectangle>
-        <Label blendMode="DARKEN" layoutX="169.0" layoutY="143.0" prefHeight="88.0" prefWidth="296.0" scaleX="2.0" scaleY="2.0" text="Vagtplan for medarbejdere" textOverrun="WORD_ELLIPSIS">
+        <Label blendMode="DARKEN" layoutX="171.0" layoutY="77.0" prefHeight="88.0" prefWidth="296.0" scaleX="2.0" scaleY="2.0" text="Din vagtplan" textOverrun="WORD_ELLIPSIS">
          <font>
             <Font name="SansSerif Regular" size="21.0" />
          </font></Label>
-        <TableView fx:id="medarbejderTableView" editable="true" layoutX="780.0" layoutY="102.0" prefHeight="652.0" prefWidth="392.0">
+        <TableView fx:id="medarbejderTableView" editable="true" layoutX="391.0" layoutY="99.0" opacity="0.79" prefHeight="652.0" prefWidth="778.0">
             <columns>
-                <TableColumn fx:id="medarbejderColumn" prefWidth="147.0" text="Medarbejder" />
-                <TableColumn fx:id="tidColumn" prefWidth="100.0" text="Tid" />
-                <TableColumn fx:id="serviceColumn" prefWidth="123.0" text="Service" />
+                <TableColumn fx:id="datoColumn" prefWidth="233.0" text="Dato" />
+                <TableColumn fx:id="tidColumn" prefWidth="297.0" text="Tid" />
+                <TableColumn fx:id="serviceColumn" prefWidth="236.0" text="Service" />
             </columns>
          <effect>
             <DropShadow />
