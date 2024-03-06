@@ -20,7 +20,7 @@
         <TextField fx:id="AdgangskodeTF" alignment="CENTER" layoutX="511.0" layoutY="303.0" prefHeight="36.0" prefWidth="147.0" promptText="Adgangskode" styleClass="text-field-style" />
         <Button fx:id="LoginButton" layoutX="547.0" layoutY="400.0" mnemonicParsing="false" onAction="#loginHandler" text="Login" />
         <Button fx:id="OpretKundeButton" layoutX="526.0" layoutY="457.0" mnemonicParsing="false" onAction="#SkiftTilOpretKunde" text="Opret kunde" />
-      <Label layoutX="715.0" layoutY="14.0" prefHeight="54.0" prefWidth="443.0" text="Hårmonikas Frisør Salon" textFill="#f5f5f5">
+      <Label layoutX="715.0" layoutY="14.0" prefHeight="54.0" prefWidth="443.0" text="Virker det nu?" textFill="#f5f5f5">
          <font>
             <Font name="Onyx" size="72.0" />
          </font>

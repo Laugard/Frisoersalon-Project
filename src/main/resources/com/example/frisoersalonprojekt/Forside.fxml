@@ -12,8 +12,8 @@
             <Image url="@Images/billedeTilLaugeJonasDiaco.png" />
          </image>
       </ImageView>
-      <Button fx:id="LogUd" layoutX="928.0" layoutY="518.0" mnemonicParsing="false" onAction="#LogUd" text="Log ud" />
-      <Button fx:id="bestilTidBtn" layoutX="922.0" layoutY="302.0" mnemonicParsing="false" onAction="#SkiftTilTidsbestilling" text="Bestil Tid" />
-      <Button fx:id="redigerTidBtn" layoutX="873.0" layoutY="417.0" mnemonicParsing="false" onAction="#SkiftTilRedigerTid" text="Rediger din tidsbestilling" />
+      <Button fx:id="LogUd" layoutX="922.0" layoutY="507.0" mnemonicParsing="false" onAction="#LogUd" text="Log ud" />
+      <Button fx:id="bestilTidBtn" layoutX="916.0" layoutY="295.0" mnemonicParsing="false" onAction="#SkiftTilTidsbestilling" text="Bestil Tid" />
+      <Button fx:id="redigerTidBtn" layoutX="867.0" layoutY="406.0" mnemonicParsing="false" onAction="#SkiftTilRedigerTid" text="Rediger din tidsbestilling" />
    </children>
 </AnchorPane>
