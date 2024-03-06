@@ -23,5 +23,6 @@
         <DatePicker fx:id="datoVaelger" layoutX="126.0" layoutY="283.0" /> <!-- Tilføjet DatePicker -->
         <ComboBox fx:id="tidspunktComboBox" layoutX="126.0" layoutY="321.0" promptText="Vælg et tidspunkt" />
         <Button fx:id="bekraeftButton" layoutX="123.0" layoutY="360.0" onAction="#handleBekraeftAction" text="Bekræft tidsbestilling" />
+      <Button fx:id="tilbageTilForsideBtn" layoutX="131.0" layoutY="433.0" onAction="#tilbageTilForside" text="Tilbage til forside" />
     </children>
 </AnchorPane>

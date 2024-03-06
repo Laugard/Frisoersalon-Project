@@ -2,12 +2,15 @@ package com.example.frisoersalonprojekt.Controller;
 
 import com.example.frisoersalonprojekt.Klasser.DbSql;
 import com.example.frisoersalonprojekt.Klasser.SessionManager;
+import com.example.frisoersalonprojekt.Main;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.HashMap;
@@ -24,6 +27,8 @@ public class Tidsbestilling {
     private ComboBox<Timestamp> tidspunktComboBox;
     @FXML
     private Button bekraeftButton;
+    @FXML
+    private Button tilbageTilForsideBtn;
     @FXML
     private DatePicker datoVaelger;
     private Map<String, Integer> medarbejderIdMap = new HashMap<>();
@@ -137,5 +142,11 @@ public class Tidsbestilling {
         alert.showAndWait();
     }
 
+    @FXML
+    private void tilbageTilForside(ActionEvent event) throws IOException {
+        Main m = new Main();
+        m.changeScene("Forside.fxml");
+
+    }
 
 }

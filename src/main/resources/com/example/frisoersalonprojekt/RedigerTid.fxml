@@ -34,6 +34,11 @@
             <Label layoutX="13.0" layoutY="287.0" text="Derefter vælger du en ny dato og tidspunkt og klikker gem!" textFill="WHITE" />
          </children>
       </AnchorPane>
+      <Label layoutX="668.0" layoutY="135.0" text="Dine tidsbestillinger">
+         <font>
+            <Font name="System Italic" size="18.0" />
+         </font>
+      </Label>
 
     </children>
 </AnchorPane>
