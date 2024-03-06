@@ -53,7 +53,7 @@
             </Lighting>
          </effect>
       </ImageView>
-        <Button fx:id="LogUdBtn" layoutX="120.0" layoutY="607.0" mnemonicParsing="false" onAction="#LogUd" prefHeight="74.0" prefWidth="122.0" scaleX="2.0" scaleY="2.0" styleClass="myButton" text="Log ud">
+        <Button fx:id="LogUdBtn" layoutX="113.0" layoutY="643.0" mnemonicParsing="false" onAction="#LogUd" prefHeight="74.0" prefWidth="122.0" scaleX="2.0" scaleY="2.0" styleClass="myButton" text="Log ud">
          <font>
             <Font size="13.0" />
          </font>
@@ -73,14 +73,7 @@
          <font>
             <Font name="SansSerif Regular" size="21.0" />
          </font></Label>
-        <Button layoutX="462.0" layoutY="607.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="183.0" scaleX="2.0" scaleY="2.0" styleClass="myButton" text="Opret tid">
-         <font>
-            <Font size="76.0" />
-         </font>
-         <effect>
-            <DropShadow />
-         </effect></Button>
-        <TableView fx:id="medarbejderTableView" editable="true" layoutX="780.0" layoutY="102.0" prefHeight="616.0" prefWidth="392.0">
+        <TableView fx:id="medarbejderTableView" editable="true" layoutX="780.0" layoutY="102.0" prefHeight="652.0" prefWidth="392.0">
             <columns>
                 <TableColumn fx:id="medarbejderColumn" prefWidth="147.0" text="Medarbejder" />
                 <TableColumn fx:id="tidColumn" prefWidth="100.0" text="Tid" />
