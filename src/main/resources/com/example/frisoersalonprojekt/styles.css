@@ -10,8 +10,8 @@ HBox {
 Button {
     -fx-font-size: 14px;
     -fx-padding: 8 12;
-    -fx-background-color: linear-gradient(to bottom right, #a9adc2, #256b51);
-    -fx-text-fill: #fff;
+    -fx-background-color: linear-gradient(to bottom right, #a9adc2, #000000);
+    -fx-text-fill: #ffffff;
     -fx-background-radius: 15 15 15 15;
     -fx-border-width: 0;
     align-items: center;
@@ -29,39 +29,39 @@ Label {
     -fx-font-family: 'Montserrat', sans-serif;}
 
 TableView {
-    -fx-background-color: linear-gradient(to bottom right, #a6acc9, #256b51);
-    -fx-border-color: linear-gradient(to bottom right, #b3badc, #256b51);
+    -fx-background-color: linear-gradient(to bottom right, #a6acc9, #101a16);
+    -fx-border-color: linear-gradient(to bottom right, #b3badc, #000000);
     -fx-border-radius: 8px;
     -fx-padding: 10px;
 }
 
 TableColumn {
     -fx-alignment: CENTER;
-    -fx-background-color: linear-gradient(to bottom, #9ba5c7, #315b45);
-    -fx-border-color: linear-gradient(to bottom, #9aa2c5, #315b45);
+    -fx-background-color: linear-gradient(to bottom, #9ba5c7, #0a110e);
+    -fx-border-color: linear-gradient(to bottom, #9aa2c5, #020302);
     -fx-text-fill: #fff;
     -fx-font-size: 14px;
     -fx-padding: 10px;
 }
 
 TableColumn:even {
-    -fx-background-color: linear-gradient(to bottom, #a5aecb, #315b45);
+    -fx-background-color: linear-gradient(to bottom, #a5aecb, #000000);
 }
 
 TableColumn:odd {
-    -fx-background-color: linear-gradient(to bottom, #a9b0ce, #315b45);
+    -fx-background-color: linear-gradient(to bottom, #a9b0ce, #000000);
 }
 
 TableColumn:hover {
-    -fx-background-color: #4caf50;
+    -fx-background-color: #101f11;
     -fx-text-fill: #fff;
 }
 
 TableColumn:selected {
-    -fx-background-color: #4caf50;
+    -fx-background-color: #030503;
     -fx-text-fill: #fff;
 }
 
 TableColumn:empty {
-    -fx-background-color: linear-gradient(to bottom, #7b85a6, #315b45);
+    -fx-background-color: linear-gradient(to bottom, #7b85a6, #040705);
 }
