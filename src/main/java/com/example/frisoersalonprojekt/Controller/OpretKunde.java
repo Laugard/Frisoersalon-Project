@@ -3,6 +3,7 @@ package com.example.frisoersalonprojekt.Controller;
 import com.example.frisoersalonprojekt.Klasser.DbSql;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
@@ -20,7 +21,7 @@ public class OpretKunde {
     @FXML
     private TextField OpretBrugernavnTF;
     @FXML
-    private TextField OpretAdgangskodeTF;
+    private PasswordField OpretAdgangskodePF;
     @FXML
     private Button opretBrugerbtn;
 
@@ -39,7 +40,7 @@ public class OpretKunde {
                 OpretTelefonTF.getText(),
                 OpretEmailTF.getText(),
                 OpretBrugernavnTF.getText(),
-                OpretAdgangskodeTF.getText()
+                OpretAdgangskodePF.getText()
         );
     }
 

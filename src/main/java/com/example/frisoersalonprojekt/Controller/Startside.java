@@ -21,7 +21,7 @@ public class Startside {
     @FXML
     private TextField BrugernavnTF;
     @FXML
-    private TextField AdgangskodeTF;
+    private TextField AdgangskodePF;
 @FXML
 private ImageView frisoer;
 
@@ -33,7 +33,7 @@ private ImageView frisoer;
 
     @FXML
     private void loginHandler() throws IOException {
-        String loginResult = dbSql.validateLogin(BrugernavnTF.getText(), AdgangskodeTF.getText());
+        String loginResult = dbSql.validateLogin(BrugernavnTF.getText(), AdgangskodePF.getText());
 
         switch (loginResult) {
             case "AdminForside":

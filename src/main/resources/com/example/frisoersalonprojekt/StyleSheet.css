@@ -1,23 +1,20 @@
 .text-field-style {
-    -fx-prompt-text-fill: #A0A0A0;
-    -fx-text-inner-color: black; /* Text color */
-    -fx-background-color: white; /* Background color */
-    -fx-border-color: #D0D0D0; /* Border color */
-    -fx-border-width: 2px; /* Border width */
-    -fx-border-radius: 5px; /* Border radius to match the background radius */
-    -fx-background-radius: 5px; /* Background radius for rounded corners */
-    -fx-padding: 8px; /* Padding inside the text field */
-    -fx-font-size: 14px; /* Font size */
-    -fx-font-family: "Arial", sans-serif;
+    -fx-padding: 4; /* Adjust padding size to control the black border thickness */
+    -fx-background-color: black, white; /* First layer is black (padding), second is white (actual background) */
+    -fx-background-insets: 0, 1.5; /* First layer (black) has no insets, second layer (white) starts after 1.5 pixels */
+    -fx-border-color: black;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 10; /* Rounded edges for the border */
+    -fx-background-radius: 10, 8.5; /* Outer radius for black background, slightly smaller for white to fit inside */
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 
-.text-field-style:hover {
-    -fx-background-color: #121212; /* Slightly lighter black on hover for feedback */
-}
 
-.text-field-style:focused {
-    -fx-border-color: #4DA0B0; /* Focus ring color */
-    -fx-background-color: white; /* Ensure the background matches the non-focused state */
+.left-form {
+    -fx-background-color: linear-gradient(to bottom right, #272b3f, #256b51);
+    -fx-border-color: #000;
+    -fx-border-width: .4px 0px .4px .4px;
 }
 
 
@@ -42,6 +39,7 @@
 .container {
     -fx-background-color: #000000; /* Pure black background */
 }
+
 
 #pane{
     -fx-background-image: url("Images/BilledeTilFrisoer.jpg");

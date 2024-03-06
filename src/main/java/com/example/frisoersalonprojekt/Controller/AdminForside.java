@@ -50,5 +50,5 @@ public class AdminForside {
         m.changeScene("Startside.fxml");
         System.out.println("Du er nu logget af");
     }
-
+    
 }
