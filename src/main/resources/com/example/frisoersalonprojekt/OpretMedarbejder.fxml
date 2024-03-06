@@ -11,48 +11,49 @@
    <children>
 
 
-            <Label layoutX="196.0" layoutY="85.0" prefHeight="17.0" prefWidth="64.0" text="Fornavn" textFill="WHITE">
+            <Label layoutX="340.0" layoutY="82.0" prefHeight="17.0" prefWidth="64.0" text="Fornavn" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font></Label>
-            <Label layoutX="191.0" layoutY="125.0" text="Efternavn" textFill="WHITE">
+            <Label layoutX="338.0" layoutY="121.0" text="Efternavn" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font></Label>
-            <Label layoutX="175.0" layoutY="162.0" text="Telefonnummer" textFill="WHITE">
+            <Label layoutX="322.0" layoutY="162.0" text="Telefonnummer" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font></Label>
-            <Label layoutX="200.0" layoutY="205.0" text="E-mail" textFill="WHITE">
+            <Label layoutX="338.0" layoutY="205.0" text="E-mail" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font></Label>
-            <Label layoutX="203.0" layoutY="243.0" prefHeight="17.0" prefWidth="87.0" text="Admin" textFill="WHITE">
+            <Label layoutX="334.0" layoutY="243.0" prefHeight="17.0" prefWidth="87.0" text="Admin" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font></Label>
-            <Label layoutX="186.0" layoutY="283.0" text="Brugernavn" textFill="WHITE">
+            <Label layoutX="330.0" layoutY="283.0" text="Brugernavn" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font></Label>
-            <Label layoutX="180.0" layoutY="324.0" text="Adgangskode" textFill="WHITE">
+            <Label layoutX="323.0" layoutY="324.0" text="Adgangskode" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font></Label>
 
 
-            <Label layoutX="203.0" layoutY="17.0" text="Indsæt informationer herunder:" textFill="WHITE">
+            <Label layoutX="525.0" layoutY="14.0" text="Indsæt informationer herunder:" textFill="WHITE" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Label>
-            <TextField fx:id="OpretFornavnTF" layoutX="321.0" layoutY="80.0" />
-            <TextField fx:id="OpretEfternavnTF" layoutX="321.0" layoutY="120.0" />
-            <TextField fx:id="OpretTelefonTF" layoutX="321.0" layoutY="157.0" />
-            <TextField fx:id="OpretEmailTF" layoutX="321.0" layoutY="200.0" />
-            <TextField fx:id="OpretAdminTF" layoutX="321.0" layoutY="238.0" />
-            <TextField fx:id="OpretBrugernavnTF" layoutX="321.0" layoutY="278.0" />
-            <TextField fx:id="OpretAdgangskodeTF" layoutX="321.0" layoutY="319.0" />
-            <Button fx:id="opretBrugerbtn" layoutX="245.0" layoutY="385.0" mnemonicParsing="false" onAction="#opretMedarbejderHandler" prefHeight="30.0" prefWidth="190.0" text="Opret bruger" />
+            <TextField fx:id="OpretFornavnTF" layoutX="470.0" layoutY="82.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="696.0" AnchorPane.topAnchor="81.0" />
+            <TextField fx:id="OpretEfternavnTF" layoutX="470.0" layoutY="125.0" AnchorPane.topAnchor="120.0" />
+            <TextField fx:id="OpretTelefonTF" layoutX="470.0" layoutY="162.0" AnchorPane.topAnchor="120.66666666666667" />
+            <TextField fx:id="OpretEmailTF" layoutX="470.0" layoutY="205.0" />
+            <TextField fx:id="OpretAdminTF" layoutX="470.0" layoutY="243.0" />
+            <TextField fx:id="OpretBrugernavnTF" layoutX="469.0" layoutY="283.0" />
+            <TextField fx:id="OpretAdgangskodeTF" layoutX="469.0" layoutY="324.0" />
+            <Button fx:id="opretBrugerbtn" layoutX="326.0" layoutY="387.0" mnemonicParsing="false" onAction="#opretMedarbejderHandler" prefHeight="30.0" prefWidth="190.0" text="Opret bruger" />
+      <TextField fx:id="OpretTelefonTF1" layoutX="470.0" layoutY="162.0" />
 
    </children>
    <styleClass>
