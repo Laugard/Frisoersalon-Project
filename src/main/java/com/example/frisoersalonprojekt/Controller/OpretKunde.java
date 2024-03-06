@@ -4,6 +4,7 @@ import com.example.frisoersalonprojekt.Klasser.DbSql;
 import com.example.frisoersalonprojekt.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -38,7 +39,7 @@ public class OpretKunde {
 
 
     public void opretKundeHandler() {
-        dbSql.opretKunde(
+        boolean success = dbSql.opretKunde(
                 OpretFornavnTF.getText(),
                 OpretEfternavnTF.getText(),
                 OpretTelefonTF.getText(),
@@ -46,7 +47,36 @@ public class OpretKunde {
                 OpretBrugernavnTF.getText(),
                 OpretAdgangskodePF.getText()
         );
+
+        if (success) {
+            // Viser en alert boks, hvis kunden er oprettet succesfuldt
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Kunde Oprettet");
+            alert.setHeaderText(null); // Ingen header tekst
+            alert.setContentText("Kunde oprettet succesfuldt.");
+            alert.showAndWait(); // Viser alertboksen og venter på, at brugeren lukker den
+
+
+            // Rydder alle tekstfelter, når kunden er oprettet succesfuldt
+            OpretFornavnTF.setText("");
+            OpretEfternavnTF.setText("");
+            OpretTelefonTF.setText("");
+            OpretEmailTF.setText("");
+            OpretBrugernavnTF.setText("");
+            OpretAdgangskodePF.setText("");
+        } else {
+            // Viser en fejlmeddelelse, hvis kundeoprettelsen mislykkes
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText(null); // Ingen header tekst
+            alert.setContentText("Der opstod en fejl under oprettelsen af kunden.");
+
+            alert.showAndWait(); // Viser alertboksen og venter på, at brugeren lukker den
+        }
     }
+
+
+
 
 
     @FXML
@@ -55,6 +85,4 @@ public class OpretKunde {
         m.changeScene("Startside.fxml");
 
     }
-
-
 }

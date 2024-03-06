@@ -32,7 +32,7 @@ public class DbSql {
 
 
 
-    public void opretKunde(String fornavn, String efternavn, String telefon, String email, String brugernavn, String adgangskode) {
+    public boolean opretKunde(String fornavn, String efternavn, String telefon, String email, String brugernavn, String adgangskode) {
         String sql = "INSERT INTO Kunde (kundeFornavn, kundeEfternavn, kundeTelefon, kundeEmail, brugernavn, adgangskode) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, fornavn);
@@ -41,11 +41,17 @@ public class DbSql {
             pstmt.setString(4, email);
             pstmt.setString(5, brugernavn);
             pstmt.setString(6, adgangskode);
-            pstmt.executeUpdate();
+            int affectedRows = pstmt.executeUpdate();
+
+            // Returnerer true, hvis en række er blevet påvirket/successfuldt indsat
+            return affectedRows > 0;
         } catch (SQLException e) {
             e.printStackTrace();
+            // Returnerer false, hvis der sker en exception/fejl
+            return false;
         }
     }
+
 
     public boolean opretService(String serviceNavn, String varighed, int pris) {
         String sql = "INSERT INTO Service (serviceNavn, varighed, pris) VALUES (?, ?, ?)";

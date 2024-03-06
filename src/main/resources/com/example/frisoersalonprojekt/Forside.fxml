@@ -14,6 +14,6 @@
       </ImageView>
       <Button fx:id="LogUd" layoutX="922.0" layoutY="507.0" mnemonicParsing="false" onAction="#LogUd" text="Log ud" />
       <Button fx:id="bestilTidBtn" layoutX="916.0" layoutY="295.0" mnemonicParsing="false" onAction="#SkiftTilTidsbestilling" text="Bestil Tid" />
-      <Button fx:id="redigerTidBtn" layoutX="867.0" layoutY="406.0" mnemonicParsing="false" onAction="#SkiftTilRedigerTid" text="Rediger din tidsbestilling" />
+      <Button fx:id="redigerTidBtn" layoutX="839.0" layoutY="406.0" mnemonicParsing="false" onAction="#SkiftTilRedigerTid" text="Rediger og se dine tidsbestillinger" />
    </children>
 </AnchorPane>
