@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@StyleSheet.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frisoersalonprojekt.Controller.Startside">
     <children>
-      <ImageView fitHeight="800.0" fitWidth="1206.0" layoutX="-3.0">
-         <image>
-            <Image url="@Images/Hårmonika.png" />
-         </image>
-      </ImageView>
+        <ImageView fitHeight="800.0" fitWidth="1206.0" layoutX="-3.0">
+            <image>
+                <Image url="@Images/Hårmonika.png" />
+            </image>
+        </ImageView>
 
-        <TextField fx:id="BrugernavnTF" alignment="CENTER" layoutX="525.0" layoutY="290.0" promptText="Brugernavn" styleClass="text-field-style" />
-        <Button fx:id="LoginButton" layoutX="560.0" layoutY="400.0" mnemonicParsing="false" onAction="#loginHandler" text="Login" />
-        <Button fx:id="OpretKundeButton" layoutX="542.0" layoutY="456.0" mnemonicParsing="false" onAction="#SkiftTilOpretKunde" text="Opret kunde" />
-      <PasswordField styleClass="text-field-style" fx:id="AdgangskodePF" layoutX="527.0" layoutY="337.0" promptText="Adgangskode" />
+        <TextField fx:id="BrugernavnTF" alignment="CENTER" layoutX="511.0" layoutY="253.0" promptText="Brugernavn" styleClass="text-field-style" />
+        <TextField fx:id="AdgangskodeTF" alignment="CENTER" layoutX="511.0" layoutY="303.0" prefHeight="36.0" prefWidth="147.0" promptText="Adgangskode" styleClass="text-field-style" />
+        <Button fx:id="LoginButton" layoutX="547.0" layoutY="400.0" mnemonicParsing="false" onAction="#loginHandler" text="Login" />
+        <Button fx:id="OpretKundeButton" layoutX="526.0" layoutY="457.0" mnemonicParsing="false" onAction="#SkiftTilOpretKunde" text="Opret kunde" />
+      <Label layoutX="715.0" layoutY="14.0" prefHeight="54.0" prefWidth="443.0" text="Hårmonikas Frisør Salon" textFill="#f5f5f5">
+         <font>
+            <Font name="Onyx" size="72.0" />
+         </font>
+      </Label>
 
     </children>
 </AnchorPane>

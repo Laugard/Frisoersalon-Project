@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frisoersalonprojekt.Controller.Forside">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@StyleSheet.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frisoersalonprojekt.Controller.Forside">
    <children>
-      <Button fx:id="LogUd" layoutX="160.0" layoutY="87.0" mnemonicParsing="false" onAction="#LogUd" text="Log ud" />
-      <Button fx:id="bestilTidBtn" layoutX="154.0" layoutY="200.0" mnemonicParsing="false" onAction="#SkiftTilTidsbestilling" text="Bestil Tid" />
-      <Button fx:id="redigerTidBtn" layoutX="113.0" layoutY="288.0" mnemonicParsing="false" onAction="#SkiftTilRedigerTid" text="Rediger din tidsbestilling" />
+      <ImageView fitHeight="800.0" fitWidth="1206.0" layoutX="-3.0">
+         <image>
+            <Image url="@Images/billedeTilLaugeJonasDiaco.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="LogUd" layoutX="928.0" layoutY="518.0" mnemonicParsing="false" onAction="#LogUd" text="Log ud" />
+      <Button fx:id="bestilTidBtn" layoutX="922.0" layoutY="302.0" mnemonicParsing="false" onAction="#SkiftTilTidsbestilling" text="Bestil Tid" />
+      <Button fx:id="redigerTidBtn" layoutX="873.0" layoutY="417.0" mnemonicParsing="false" onAction="#SkiftTilRedigerTid" text="Rediger din tidsbestilling" />
    </children>
 </AnchorPane>
