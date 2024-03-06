@@ -11,12 +11,11 @@
    <children>
       <AnchorPane prefHeight="800.0" prefWidth="352.0" styleClass="left-form">
          <children>
-            <Button fx:id="OpretServiceBtn" layoutX="71.0" layoutY="149.0" mnemonicParsing="false" onAction="#SkiftTilOpretService" prefHeight="35.0" prefWidth="210.0" stylesheets="@StyleSheet.css" text="Opret Service" />
-            <Button fx:id="LogUdBtn" layoutX="71.0" layoutY="719.0" mnemonicParsing="false" onAction="#LogUd" prefHeight="35.0" prefWidth="210.0" stylesheets="@StyleSheet.css" text="Log ud" />
-            <Button fx:id="SletMedarbejderBtn" layoutX="71.0" layoutY="354.0" mnemonicParsing="false" onAction="#SkiftTilSletMedarbejder" prefHeight="35.0" prefWidth="210.0" stylesheets="@StyleSheet.css" text="Slet Medarbejder" />
+            <Button fx:id="OpretServiceBtn" layoutX="71.0" layoutY="150.0" mnemonicParsing="false" onAction="#SkiftTilOpretService" prefHeight="35.0" prefWidth="210.0" stylesheets="@StyleSheet.css" text="Opret Service" />
+            <Button fx:id="LogUdBtn" layoutX="71.0" layoutY="669.0" mnemonicParsing="false" onAction="#LogUd" prefHeight="35.0" prefWidth="210.0" stylesheets="@StyleSheet.css" text="Log ud" />
+            <Button fx:id="SletMedarbejderBtn" layoutX="71.0" layoutY="300.0" mnemonicParsing="false" onAction="#SkiftTilSletMedarbejder" prefHeight="35.0" prefWidth="210.0" stylesheets="@StyleSheet.css" text="Slet Medarbejder" />
             <Button fx:id="OpretKundeBtn" layoutX="71.0" layoutY="200.0" mnemonicParsing="false" onAction="#SkiftTilOpretKunde" prefHeight="35.0" prefWidth="210.0" stylesheets="@StyleSheet.css" text="Opret Kunde" />
-            <Button fx:id="OpretTidsbestillingBtn" layoutX="71.0" layoutY="250.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="210.0" stylesheets="@StyleSheet.css" text="Opret tidsbestilling" />
-            <Button fx:id="OpretMedarbejderBtn" layoutX="71.0" layoutY="301.0" mnemonicParsing="false" onAction="#SkiftTilOpretMedarbejder" prefHeight="35.0" prefWidth="210.0" stylesheets="@StyleSheet.css" text="Opret medarbejder" />
+            <Button fx:id="OpretMedarbejderBtn" layoutX="71.0" layoutY="250.0" mnemonicParsing="false" onAction="#SkiftTilOpretMedarbejder" prefHeight="35.0" prefWidth="210.0" stylesheets="@StyleSheet.css" text="Opret medarbejder" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="424.0" layoutY="-1.0" prefHeight="800.0" prefWidth="775.0">

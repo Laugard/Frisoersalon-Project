@@ -1,10 +1,13 @@
 package com.example.frisoersalonprojekt.Controller;
 
 import com.example.frisoersalonprojekt.Klasser.DbSql;
+import com.example.frisoersalonprojekt.Main;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class OpretMedarbejder {
@@ -25,7 +28,8 @@ public class OpretMedarbejder {
     private TextField OpretAdgangskodeTF;
     @FXML
     private Button opretBrugerbtn;
-
+    @FXML
+    private Button tilbageTilForsideBtn;
 
 
 
@@ -51,5 +55,10 @@ public class OpretMedarbejder {
             System.out.println("Fejl ved oprettelse af medarbejder");
         }
     }
+    @FXML
+    private void tilbageTilForside(ActionEvent event) throws IOException {
+        Main m = new Main();
+        m.changeScene("AdminForside.fxml");
 
+    }
 }

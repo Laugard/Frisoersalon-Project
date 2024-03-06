@@ -2,12 +2,15 @@ package com.example.frisoersalonprojekt.Controller;
 
 import com.example.frisoersalonprojekt.Klasser.DbSql;
 import com.example.frisoersalonprojekt.Klasser.Service;
+import com.example.frisoersalonprojekt.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class OpretService {
@@ -22,6 +25,8 @@ public class OpretService {
     private Button opretServiceBtn;
     @FXML
     private Button SletServiceBtn;
+    @FXML
+    private Button tilbageTilForsideBtn;
     @FXML
     private TableView<Service> ServiceTabel;
     @FXML
@@ -105,4 +110,14 @@ public class OpretService {
             infoAlert.showAndWait();
         }
     }
+
+
+
+    @FXML
+    private void tilbageTilForside(ActionEvent event) throws IOException {
+        Main m = new Main();
+        m.changeScene("AdminForside.fxml");
+
+    }
+
 }

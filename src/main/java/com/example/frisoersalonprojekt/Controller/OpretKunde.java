@@ -1,11 +1,14 @@
 package com.example.frisoersalonprojekt.Controller;
 
 import com.example.frisoersalonprojekt.Klasser.DbSql;
+import com.example.frisoersalonprojekt.Main;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class OpretKunde {
@@ -24,7 +27,8 @@ public class OpretKunde {
     private PasswordField OpretAdgangskodePF;
     @FXML
     private Button opretBrugerbtn;
-
+    @FXML
+    private Button tilbageTilStartsideBtn;
 
 
     private DbSql dbSql = new DbSql();
@@ -43,5 +47,14 @@ public class OpretKunde {
                 OpretAdgangskodePF.getText()
         );
     }
+
+
+    @FXML
+    private void tilbageTilStartside(ActionEvent event) throws IOException {
+        Main m = new Main();
+        m.changeScene("Startside.fxml");
+
+    }
+
 
 }

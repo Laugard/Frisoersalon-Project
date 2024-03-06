@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="800.0" stylesheets="@StyleSheet.css" styleClass="left-form" prefWidth="1200.0"  xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frisoersalonprojekt.Controller.OpretKunde">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="left-form" stylesheets="@StyleSheet.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frisoersalonprojekt.Controller.OpretKunde">
    <children>
             <Label layoutX="756.0" layoutY="284.0" prefHeight="17.0" prefWidth="64.0" text="Fornavn" textFill="#f8f8f8" />
             <Label layoutX="756.0" layoutY="324.0" text="Efternavn" textFill="#f8f8f8" />
@@ -18,18 +18,19 @@
             <Label layoutX="756.0" layoutY="476.0" text="Adgangskode" textFill="#f8f8f8" />
 
             <Label layoutX="821.0" layoutY="202.0" text="Registrer dig herunder" textFill="#f8f8f8" />
-            <TextField styleClass="text-field-style" fx:id="OpretFornavnTF" layoutX="869.0" layoutY="280.0" prefHeight="25.0" prefWidth="205.0" promptText="Fornavn" />
-            <TextField styleClass="text-field-style" fx:id="OpretEfternavnTF" layoutX="869.0" layoutY="320.0" prefHeight="25.0" prefWidth="205.0" promptText="Efternavn" />
-            <TextField styleClass="text-field-style" fx:id="OpretTelefonTF" layoutX="869.0" layoutY="358.0" prefHeight="25.0" prefWidth="205.0" promptText="Telefonnumer" />
-            <TextField styleClass="text-field-style" fx:id="OpretEmailTF" layoutX="869.0" layoutY="395.0" prefHeight="25.0" prefWidth="205.0" promptText="E-mail" />
-            <TextField styleClass="text-field-style" fx:id="OpretBrugernavnTF" layoutX="869.0" layoutY="434.0" prefHeight="25.0" prefWidth="205.0" promptText="Brugernavn" />
+            <TextField fx:id="OpretFornavnTF" layoutX="869.0" layoutY="280.0" prefHeight="25.0" prefWidth="205.0" promptText="Fornavn" styleClass="text-field-style" />
+            <TextField fx:id="OpretEfternavnTF" layoutX="869.0" layoutY="320.0" prefHeight="25.0" prefWidth="205.0" promptText="Efternavn" styleClass="text-field-style" />
+            <TextField fx:id="OpretTelefonTF" layoutX="869.0" layoutY="358.0" prefHeight="25.0" prefWidth="205.0" promptText="Telefonnumer" styleClass="text-field-style" />
+            <TextField fx:id="OpretEmailTF" layoutX="869.0" layoutY="395.0" prefHeight="25.0" prefWidth="205.0" promptText="E-mail" styleClass="text-field-style" />
+            <TextField fx:id="OpretBrugernavnTF" layoutX="869.0" layoutY="434.0" prefHeight="25.0" prefWidth="205.0" promptText="Brugernavn" styleClass="text-field-style" />
             <Button fx:id="opretBrugerbtn" layoutX="838.0" layoutY="530.0" mnemonicParsing="false" onAction="#opretKundeHandler" text="Opret bruger" />
       <ImageView fitHeight="800.0" fitWidth="544.0">
          <image>
             <Image url="@Images/50940407_776394472743978_4965775904132300800_n-e1557822647696-o7svphk0vqa0e0xjpla2kbbynxv6v7q867yn3gu9oo.jpg" />
          </image>
       </ImageView>
-      <PasswordField styleClass="text-field-style" fx:id="OpretAdgangskodePF" layoutX="869.0" layoutY="472.0" prefHeight="25.0" prefWidth="205.0" promptText="Adgangskode" />
+      <PasswordField fx:id="OpretAdgangskodePF" layoutX="869.0" layoutY="472.0" prefHeight="25.0" prefWidth="205.0" promptText="Adgangskode" styleClass="text-field-style" />
+      <Button fx:id="tilbageTilStartsideBtn" layoutX="831.0" layoutY="652.0" mnemonicParsing="false" onAction="#tilbageTilStartside" text="Tilbage til login" />
 
    </children>
 </AnchorPane>

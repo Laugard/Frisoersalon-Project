@@ -1,20 +1,24 @@
 package com.example.frisoersalonprojekt.Controller;
 
+import com.example.frisoersalonprojekt.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.example.frisoersalonprojekt.Klasser.Medarbejder;
 import com.example.frisoersalonprojekt.Klasser.DbSql;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class SletMedarbejder {
 
     @FXML
     private Button SletMedarbejderBtn; // Ændret fra ToggleButton til Button
-
+    @FXML
+    private Button tilbageTilForsideBtn;
     @FXML
     private TableView<Medarbejder> SletMedarbejderTabel;
 
@@ -80,6 +84,11 @@ public class SletMedarbejder {
             infoAlert.showAndWait();
         }
     }
+    @FXML
+    private void tilbageTilForside(ActionEvent event) throws IOException {
+        Main m = new Main();
+        m.changeScene("AdminForside.fxml");
 
+    }
 
 }
