@@ -364,6 +364,26 @@ public class DbSql {
         }
     }
 
+    public void opdaterTidsbestillingerTilAfholdt() {
+        String sql = "UPDATE Tidsbestillinger SET status = 'Afholdt' WHERE tidspunkt < NOW() AND status = 'PLANLAGT'";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            int affectedRows = pstmt.executeUpdate();
+            System.out.println(affectedRows + " tidsbestillinger blev opdateret til 'Afholdt'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sletGamleTidsbestillinger() {
+        // SQL-kommando til at slette tidsbestillinger ældre end 5 år
+        String sql = "DELETE FROM Tidsbestillinger WHERE tidspunkt < DATE_SUB(NOW(), INTERVAL 5 YEAR)";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            int affectedRows = pstmt.executeUpdate();
+            System.out.println(affectedRows + " gamle tidsbestillinger blev slettet.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public Connection getConnection() {
