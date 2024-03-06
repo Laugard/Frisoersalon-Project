@@ -10,7 +10,7 @@ HBox {
 Button {
     -fx-font-size: 22px;
     -fx-padding: 8 12;
-    -fx-background-color: linear-gradient(to bottom right, #99b2ae, #56585d);
+    -fx-background-color: linear-gradient(to bottom right, #99b2ae, #74777c);
     -fx-text-fill: #ffffff;
     -fx-background-radius: 15 15 15 15;
     -fx-border-width: 1;
