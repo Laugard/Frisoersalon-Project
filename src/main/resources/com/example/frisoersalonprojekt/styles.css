@@ -33,7 +33,7 @@ Label {
 TableView {
     -fx-background-color: linear-gradient(to bottom right, #6d858a, #839892);
     -fx-border-width: 2px;
-    -fx-border-color: rgba(164, 172, 210, 0.5); /* Transparent border color */
+    -fx-border-color: rgba(164, 172, 210, 0.5);
     -fx-border-radius: 0px;
     -fx-padding: 10px;
 }
