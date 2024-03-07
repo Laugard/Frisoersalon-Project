@@ -1,6 +1,7 @@
 package com.example.frisoersalonprojekt.Controller;
 
 import com.example.frisoersalonprojekt.Main;
+import com.example.frisoersalonprojekt.Utils.UseCase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,9 +10,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.example.frisoersalonprojekt.Klasser.Medarbejder;
 import com.example.frisoersalonprojekt.Utils.DbSql;
-
 import java.io.IOException;
 import java.sql.SQLException;
+
 
 public class SletMedarbejder {
 
@@ -27,10 +28,14 @@ public class SletMedarbejder {
     private TableColumn<Medarbejder, String> efternavnColumn;
     @FXML
     private TableColumn<Medarbejder, String> emailColumn;
+    private UseCase useCase;
 
-    private DbSql dbSql = new DbSql();
-
-    public SletMedarbejder() throws SQLException {
+    public SletMedarbejder() {
+        try {
+            this.useCase = new UseCase();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -43,43 +48,47 @@ public class SletMedarbejder {
     }
 
     private void opdaterMedarbejderTabel() {
-        try {
-            ObservableList<Medarbejder> medarbejderListe = FXCollections.observableArrayList(dbSql.hentMedarbejdere());
-            SletMedarbejderTabel.setItems(medarbejderListe);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ObservableList<Medarbejder> medarbejderListe = useCase.hentMedarbejdere();
+        SletMedarbejderTabel.setItems(medarbejderListe);
     }
 
     @FXML
     private void handleSletMedarbejderAction() {
         Medarbejder selected = SletMedarbejderTabel.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmDialog.setTitle("Bekræft sletning");
-            confirmDialog.setHeaderText(null);
-            confirmDialog.setContentText("Er du sikker på, at du vil slette denne medarbejder?");
-            confirmDialog.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
-            confirmDialog.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.YES) {
-                    boolean success = dbSql.sletMedarbejder(selected.getMedarbejderId());
-                    if (success) {
-                        opdaterMedarbejderTabel(); // Genindlæs medarbejderlisten efter sletning
-                        System.out.println("Medarbejder Slettet");
-                    } else {
-                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setHeaderText(null);
-                        errorAlert.setContentText("Fejl ved sletning af medarbejder.");
-                        errorAlert.showAndWait();
-                    }
+            // Konfirmationsdialog før sletning
+            boolean confirmed = confirmDeletion();
+            if (confirmed) {
+                boolean success = useCase.sletMedarbejder(selected.getMedarbejderId());
+                if (success) {
+                    opdaterMedarbejderTabel(); // Opdater tabel efter sletning
+                    System.out.println("Medarbejder slettet");
+                } else {
+                    showErrorDialog("Fejl ved sletning af medarbejder.");
                 }
-            });
+            }
         } else {
-            Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
-            infoAlert.setHeaderText(null);
-            infoAlert.setContentText("Vælg venligst en medarbejder for at slette.");
-            infoAlert.showAndWait();
+            showInfoDialog("Vælg venligst en medarbejder for at slette.");
         }
+    }
+
+    private boolean confirmDeletion() {
+        Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION, "Er du sikker på, at du vil slette denne medarbejder?", ButtonType.YES, ButtonType.NO);
+        confirmDialog.setTitle("Bekræft sletning");
+        confirmDialog.setHeaderText(null);
+        return confirmDialog.showAndWait().filter(response -> response == ButtonType.YES).isPresent();
+    }
+
+    private void showErrorDialog(String message) {
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR, message);
+        errorAlert.setHeaderText(null);
+        errorAlert.showAndWait();
+    }
+
+    private void showInfoDialog(String message) {
+        Alert infoAlert = new Alert(Alert.AlertType.INFORMATION, message);
+        infoAlert.setHeaderText(null);
+        infoAlert.showAndWait();
     }
     @FXML
     private void tilbageTilForside(ActionEvent event) throws IOException {

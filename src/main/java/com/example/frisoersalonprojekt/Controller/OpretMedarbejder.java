@@ -1,14 +1,12 @@
 package com.example.frisoersalonprojekt.Controller;
 
-import com.example.frisoersalonprojekt.Utils.DbSql;
 import com.example.frisoersalonprojekt.Main;
+import com.example.frisoersalonprojekt.Utils.UseCase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class OpretMedarbejder {
 
@@ -30,31 +28,38 @@ public class OpretMedarbejder {
     private Button opretBrugerbtn;
     @FXML
     private Button tilbageTilForsideBtn;
+    private UseCase useCase;
 
-
-
-    private DbSql dbSql = new DbSql();
-
-    public OpretMedarbejder() throws SQLException {
+    public OpretMedarbejder() {
+        try {
+            this.useCase = new UseCase();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-
     public void opretMedarbejderHandler() {
-        boolean success = dbSql.opretMedarbejder(
+        boolean success = useCase.opretMedarbejder(
                 OpretFornavnTF.getText(),
                 OpretEfternavnTF.getText(),
                 OpretTelefonTF.getText(),
                 OpretEmailTF.getText(),
-                Boolean.valueOf(OpretAdminTF.getText()),
+                Boolean.parseBoolean(OpretAdminTF.getText()), // Formodning om, at "true" eller "false" er input
                 OpretBrugernavnTF.getText(),
                 OpretAdgangskodeTF.getText()
         );
         if (success) {
-            System.out.println("Medarbejder oprettet");
-        } else {
-            System.out.println("Fejl ved oprettelse af medarbejder");
+            // Rydder alle tekstfelter, når kunden er oprettet succesfuldt
+            OpretFornavnTF.setText("");
+            OpretEfternavnTF.setText("");
+            OpretTelefonTF.setText("");
+            OpretEmailTF.setText("");
+            OpretAdminTF.setText("");
+            OpretBrugernavnTF.setText("");
+            OpretAdgangskodeTF.setText("");
         }
     }
+
     @FXML
     private void tilbageTilForside(ActionEvent event) throws IOException {
         Main m = new Main();

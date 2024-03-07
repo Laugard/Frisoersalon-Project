@@ -3,6 +3,8 @@ package com.example.frisoersalonprojekt.Utils;
 import com.example.frisoersalonprojekt.Klasser.Medarbejder;
 import com.example.frisoersalonprojekt.Klasser.Service;
 import com.example.frisoersalonprojekt.Klasser.Tidsbestilling;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -32,18 +34,22 @@ public class UseCase {
         return success;
     }
 
-    public boolean opretService(String serviceNavn, String varighed, int pris) throws SQLException {
-        return dbSql.opretService(serviceNavn, varighed, pris);
+    public boolean opretService(String serviceNavn, String varighed, int pris) {
+        boolean success = dbSql.opretService(serviceNavn, varighed, pris);
+        return success;
     }
-
-    public ArrayList<Service> hentAlleServices() throws SQLException {
-        return dbSql.hentAlleServices();
+    public boolean sletService(int serviceId) {
+        boolean success = dbSql.sletService(serviceId);
+        return success;
     }
-
-    public boolean sletService(int serviceId) throws SQLException {
-        return dbSql.sletService(serviceId);
+    public ObservableList<Service> hentAlleServices() {
+        try {
+            return FXCollections.observableArrayList(dbSql.hentAlleServices());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return FXCollections.observableArrayList();
+        }
     }
-
 
     public String login(String brugernavn, String adgangskode) {
         String loginResult = dbSql.validateLogin(brugernavn, adgangskode);
@@ -66,17 +72,29 @@ public class UseCase {
     }
 
 
-    public boolean opretMedarbejder(String fornavn, String efternavn, String telefon, String email, boolean admin, String brugernavn, String adgangskode) throws SQLException {
-        return dbSql.opretMedarbejder(fornavn, efternavn, telefon, email, admin, brugernavn, adgangskode);
+    public boolean opretMedarbejder(String fornavn, String efternavn, String telefon, String email, boolean admin, String brugernavn, String adgangskode) {
+        // Kalder dbSql.opretMedarbejder og returnerer resultatet
+        boolean success = dbSql.opretMedarbejder(fornavn, efternavn, telefon, email, admin, brugernavn, adgangskode);
+
+        // Feedback til brugeren via konsollen (kan ændres til GUI feedback hvis ønsket)
+        if (success) {
+            System.out.println("Medarbejder oprettet succesfuldt.");
+
+        } else {
+            System.out.println("Der opstod en fejl under oprettelsen af medarbejderen.");
+        }
+        return success;
     }
 
-    public ArrayList<Medarbejder> hentMedarbejdere() throws SQLException {
-        return dbSql.hentMedarbejdere();
+    public ObservableList<Medarbejder> hentMedarbejdere() {
+        return FXCollections.observableArrayList(dbSql.hentMedarbejdere());
     }
 
-    public boolean sletMedarbejder(int medarbejderId) throws SQLException {
-        return dbSql.sletMedarbejder(medarbejderId);
+    public boolean sletMedarbejder(int medarbejderId) {
+        boolean success = dbSql.sletMedarbejder(medarbejderId);
+        return success;
     }
+
 
     public boolean opretTidsbestilling(int kundeId, int medarbejderId, int serviceId, Timestamp tidspunkt) throws SQLException {
         return dbSql.opretTidsbestilling(kundeId, medarbejderId, serviceId, tidspunkt);

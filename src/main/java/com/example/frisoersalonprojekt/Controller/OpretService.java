@@ -1,17 +1,14 @@
 package com.example.frisoersalonprojekt.Controller;
 
-import com.example.frisoersalonprojekt.Utils.DbSql;
 import com.example.frisoersalonprojekt.Klasser.Service;
 import com.example.frisoersalonprojekt.Main;
-import javafx.collections.FXCollections;
+import com.example.frisoersalonprojekt.Utils.UseCase;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class OpretService {
 
@@ -35,11 +32,14 @@ public class OpretService {
     private TableColumn<Service, Integer> varighedColumn;
     @FXML
     private TableColumn<Service, Integer> prisColumn;
+    private UseCase useCase;
 
-
-    private DbSql dbSql = new DbSql();
-
-    public OpretService() throws SQLException {
+    public OpretService() {
+        try {
+            this.useCase = new UseCase();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -53,71 +53,43 @@ public class OpretService {
 
     @FXML
     private void handleOpretServiceAction() {
-        String serviceNavn = serviceNavnTF.getText();
-        String varighed = varighedTF.getText();
-        int pris = Integer.parseInt(prisTF.getText());
+        int pris = Integer.parseInt(prisTF.getText()); // Husk at tilføje fejlhåndtering for parsing
+        boolean success = useCase.opretService(serviceNavnTF.getText(), varighedTF.getText(), pris);
 
-        boolean success = dbSql.opretService(serviceNavn, varighed, pris);
         if (success) {
-            opdaterServiceTabel(); // Opdaterer tabellen for at vise den nyoprettede service
-            // Ryd tekstfelterne efter succesfuld oprettelse
+            opdaterServiceTabel();
             serviceNavnTF.clear();
             varighedTF.clear();
             prisTF.clear();
+            System.out.println("Service oprettet");
         } else {
-            // Vis fejlmeddelelse her
+            System.out.println("Fejl under opretning af service");
         }
     }
 
     private void opdaterServiceTabel() {
-        try {
-            ObservableList<Service> serviceListe = FXCollections.observableArrayList(dbSql.hentAlleServices());
-            ServiceTabel.setItems(serviceListe);
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Du kan vælge at vise en fejlmeddelelse her
-        }
+        ObservableList<Service> serviceListe = useCase.hentAlleServices();
+        ServiceTabel.setItems(serviceListe);
     }
 
     @FXML
     private void handleSletServiceAction() {
         Service selected = ServiceTabel.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmDialog.setTitle("Bekræft sletning");
-            confirmDialog.setHeaderText(null);
-            confirmDialog.setContentText("Er du sikker på, at du vil slette denne service?");
-            confirmDialog.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
-
-            confirmDialog.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.YES) {
-                    boolean success = dbSql.sletService(selected.getServiceId());
-                    if (success) {
-                        opdaterServiceTabel(); // Genindlæs servicelisten efter sletning
-                        System.out.println("Service Slettet");
-                    } else {
-                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setHeaderText(null);
-                        errorAlert.setContentText("Fejl ved sletning af service.");
-                        errorAlert.showAndWait();
-                    }
-                }
-            });
-        } else {
-            Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
-            infoAlert.setHeaderText(null);
-            infoAlert.setContentText("Vælg venligst en service for at slette.");
-            infoAlert.showAndWait();
+            boolean success = useCase.sletService(selected.getServiceId());
+            if (success) {
+                opdaterServiceTabel();
+                System.out.println("Service slettet");
+            } else {
+                System.out.println("Fejl under sletning af service");
+            }
         }
     }
-
-
 
     @FXML
     private void tilbageTilForside(ActionEvent event) throws IOException {
         Main m = new Main();
         m.changeScene("AdminForside.fxml");
-
     }
 
 }
