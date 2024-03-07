@@ -1,6 +1,6 @@
 package com.example.frisoersalonprojekt;
 
-import com.example.frisoersalonprojekt.Utils.DbSql;
+import com.example.frisoersalonprojekt.Utils.UseCase;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,10 +8,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class Main extends Application {
 
     private static Stage stg;
+    private UseCase useCase;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -28,30 +30,17 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        // Initialiser DbSql og opdater tidsbestillinger til 'Afholdt'
+        useCase = new UseCase(); // Antager at UseCase kan instantieres uden fejl
         opdaterTidsbestillinger();
         rydOpIDatabase();
     }
 
-    private void opdaterTidsbestillinger() {
-        try {
-            // Antag at du har en constructor i DbSql der ikke kræver argumenter
-            DbSql dbSql = new DbSql();
-            dbSql.opdaterTidsbestillingerTilAfholdt();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Fejl ved opdatering af tidsbestillinger: " + e.getMessage());
-        }
+    private void opdaterTidsbestillinger() throws SQLException {
+        useCase.opdaterTidsbestillingerTilAfholdt();
     }
-    private void rydOpIDatabase() {
-        try {
-            DbSql dbSql = new DbSql();
-            dbSql.opdaterTidsbestillingerTilAfholdt();
-            dbSql.sletGamleTidsbestillinger(); // Sletter gamle tidsbestillinger
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Fejl ved rydning af database: " + e.getMessage());
-        }
+
+    private void rydOpIDatabase() throws SQLException {
+        useCase.sletGamleTidsbestillinger();
     }
 
     public void changeScene(String fxml) throws IOException {

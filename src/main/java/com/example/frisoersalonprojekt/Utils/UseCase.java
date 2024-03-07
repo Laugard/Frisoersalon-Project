@@ -123,11 +123,11 @@ public class UseCase {
         dbSql.opdaterTidsbestillingTidspunkt(tidsbestillingsId, nytTidspunkt);
     }
 
-    public void opdaterTidsbestillingerTilAfholdt() throws SQLException {
+    public void opdaterTidsbestillingerTilAfholdt() {
         dbSql.opdaterTidsbestillingerTilAfholdt();
     }
 
-    public void sletGamleTidsbestillinger() throws SQLException {
+    public void sletGamleTidsbestillinger() {
         dbSql.sletGamleTidsbestillinger();
     }
 
