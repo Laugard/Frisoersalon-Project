@@ -45,3 +45,64 @@
     -fx-background-image: url("Images/BilledeTilFrisoer.jpg");
 
 }
+
+/*JEG SÆTTER NOGET IND HER*/
+
+/* Custom JavaFX ComboBox Style */
+
+.combo-box {
+    -fx-background-color: #333333; /* Baggrundsfarve */
+    -fx-text-fill: #ffffff; /* Tekstfarve */
+    -fx-font-family: "Arial"; /* Skrifttype */
+    -fx-font-size: 14px; /* Skriftstørrelse */
+}
+
+.combo-box .arrow {
+    -fx-background-color: #666666; /* Farve for pilen */
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: #666666; /* Baggrundsfarve for pilen */
+}
+
+.combo-box .list-cell {
+    -fx-background-color: #333333; /* Baggrundsfarve for celler */
+    -fx-text-fill: #ffffff; /* Tekstfarve for celler */
+}
+
+.combo-box .list-view {
+    -fx-background-color: #333333; /* Baggrundsfarve for listen */
+    -fx-text-fill: #ffffff; /* Tekstfarve for listen */
+}
+
+/* Custom JavaFX DatePicker Style */
+
+.date-picker {
+    -fx-background-color: #333333; /* Baggrundsfarve */
+    -fx-text-fill: #ffffff; /* Tekstfarve */
+    -fx-font-family: "Arial"; /* Skrifttype */
+    -fx-font-size: 14px; /* Skriftstørrelse */
+}
+
+.date-picker .arrow {
+    -fx-background-color: #666666; /* Farve for pilen */
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: #666666; /* Baggrundsfarve for pilen */
+}
+
+.date-picker .popup-content {
+    -fx-background-color: #333333; /* Baggrundsfarve for pop-up indhold */
+}
+
+.date-picker .date-cell {
+    -fx-background-color: #333333; /* Baggrundsfarve for datoceller */
+    -fx-text-fill: #ffffff; /* Tekstfarve for datoceller */
+}
+
+.date-picker .day-cell:hover {
+    -fx-background-color: #666666; /* Baggrundsfarve for hovered datoceller */
+}
+
+

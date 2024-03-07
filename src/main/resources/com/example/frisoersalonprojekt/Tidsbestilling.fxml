@@ -5,24 +5,35 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <!-- Import statement for DatePicker -->
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frisoersalonprojekt.Controller.TidsbestillingController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" styleClass="left-form" stylesheets="@StyleSheet.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frisoersalonprojekt.Controller.TidsbestillingController">
     <children>
-        <Label layoutX="186.0" layoutY="111.0" text="Dette er tidsbestilling" />
-        <ComboBox fx:id="medarbejderComboBox" layoutX="123.0" layoutY="200.0" promptText="Vælg en medarbejder">
+        <ImageView fitHeight="808.0" fitWidth="784.0" layoutY="-1.0">
+            <image>
+                <Image url="@Images/londonhair.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="909.0" layoutY="53.0" text="Tidsbestilling" textFill="WHITE">
+         <font>
+            <Font size="36.0" />
+         </font></Label>
+        <ComboBox fx:id="medarbejderComboBox" layoutX="927.0" layoutY="206.0" promptText="Vælg en medarbejder">
             <items>
                 <FXCollections fx:factory="observableArrayList">
 
                 </FXCollections>
             </items>
         </ComboBox>
-        <ComboBox fx:id="serviceComboBox" layoutX="123.0" layoutY="240.0" promptText="Vælg en service" />
-        <DatePicker fx:id="datoVaelger" layoutX="126.0" layoutY="283.0" /> <!-- Tilføjet DatePicker -->
-        <ComboBox fx:id="tidspunktComboBox" layoutX="126.0" layoutY="321.0" promptText="Vælg et tidspunkt" />
-        <Button fx:id="bekraeftButton" layoutX="123.0" layoutY="360.0" onAction="#handleBekraeftAction" text="Bekræft tidsbestilling" />
-      <Button fx:id="tilbageTilForsideBtn" layoutX="131.0" layoutY="433.0" onAction="#tilbageTilForside" text="Tilbage til forside" />
+        <ComboBox fx:id="serviceComboBox" layoutX="943.0" layoutY="315.0" promptText="Vælg en service" />
+        <DatePicker fx:id="datoVaelger" layoutX="919.0" layoutY="400.0" /> <!-- Tilføjet DatePicker -->
+        <ComboBox fx:id="tidspunktComboBox" layoutX="937.0" layoutY="483.0" promptText="Vælg et tidspunkt" />
+        <Button fx:id="bekraeftButton" layoutX="942.0" layoutY="566.0" onAction="#handleBekraeftAction" text="Bekræft tidsbestilling" />
+      <Button fx:id="tilbageTilForsideBtn" layoutX="952.0" layoutY="626.0" onAction="#tilbageTilForside" text="Tilbage til forside" />
     </children>
 </AnchorPane>

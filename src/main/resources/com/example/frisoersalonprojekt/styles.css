@@ -68,3 +68,15 @@ TableColumn:selected {
 TableColumn:empty {
     -fx-background-color: linear-gradient(to bottom, #7b85a6, #040705);
 }
+
+
+#touch {
+    -fx-position: absolute;
+    -fx-opacity: 0;
+    -fx-height: 0px;
+}
+
+/* Checked touch styles */
+#touch:pressed + .slide {
+    -fx-height: 300px;
+}
