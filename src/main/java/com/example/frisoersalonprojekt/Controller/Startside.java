@@ -1,16 +1,12 @@
 package com.example.frisoersalonprojekt.Controller;
 
-import com.example.frisoersalonprojekt.Controller.Startside;
-import com.example.frisoersalonprojekt.Klasser.DbSql;
+import com.example.frisoersalonprojekt.Utils.UseCase;
 import com.example.frisoersalonprojekt.Main;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class Startside {
 
@@ -22,51 +18,44 @@ public class Startside {
     private TextField BrugernavnTF;
     @FXML
     private TextField AdgangskodePF;
-@FXML
-private ImageView frisoer;
 
+    private UseCase useCase;
 
-    private DbSql dbSql = new DbSql();
-
-    public Startside() throws SQLException {
+    public Startside() {
+        try {
+            this.useCase = new UseCase();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void loginHandler() throws IOException {
-        String loginResult = dbSql.validateLogin(BrugernavnTF.getText(), AdgangskodePF.getText());
+        // Opkald til UseCase login, der nu også udskriver beskeder til konsollen
+        String loginResult = useCase.login(BrugernavnTF.getText(), AdgangskodePF.getText());
 
         switch (loginResult) {
             case "AdminForside":
-                // Omdiriger til AdminForside
-                System.out.println("Login success - Admin");
-                Main mAdmin = new Main();
-                mAdmin.changeScene("AdminForside.fxml");
+                changeScene("AdminForside.fxml");
                 break;
             case "MedarbejderForside":
-                // Omdiriger til MedarbejderForside
-                System.out.println("Login success - Medarbejder");
-                Main mMedarbejder = new Main();
-                mMedarbejder.changeScene("MedarbejderForside.fxml");
+                changeScene("MedarbejderForside.fxml");
                 break;
             case "Forside":
-                // Omdiriger til Forside for kunder
-                System.out.println("Login success - Kunde");
-                Main mKunde = new Main();
-                mKunde.changeScene("Forside.fxml");
+                changeScene("Forside.fxml");
                 break;
             default:
-                // Login fejlede
-                System.out.println("Login failed");
                 break;
         }
     }
 
-
-
-    @FXML
-    private void SkiftTilOpretKunde(ActionEvent event) throws IOException {
+    private void changeScene(String fxmlFile) throws IOException {
         Main m = new Main();
-        m.changeScene("OpretKunde.fxml");
+        m.changeScene(fxmlFile);
     }
 
+    @FXML
+    private void SkiftTilOpretKunde() throws IOException {
+        changeScene("OpretKunde.fxml");
+    }
 }

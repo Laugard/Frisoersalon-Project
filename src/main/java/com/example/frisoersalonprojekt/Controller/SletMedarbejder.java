@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.example.frisoersalonprojekt.Klasser.Medarbejder;
-import com.example.frisoersalonprojekt.Klasser.DbSql;
+import com.example.frisoersalonprojekt.Utils.DbSql;
 
 import java.io.IOException;
 import java.sql.SQLException;

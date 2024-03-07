@@ -1,4 +1,8 @@
-package com.example.frisoersalonprojekt.Klasser;
+package com.example.frisoersalonprojekt.Utils;
+
+import com.example.frisoersalonprojekt.Klasser.Medarbejder;
+import com.example.frisoersalonprojekt.Klasser.Service;
+import com.example.frisoersalonprojekt.Klasser.Tidsbestilling;
 
 import java.sql.*;
 import java.time.LocalDate;

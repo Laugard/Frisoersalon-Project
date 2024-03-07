@@ -1,6 +1,6 @@
 package com.example.frisoersalonprojekt.Controller;
 
-import com.example.frisoersalonprojekt.Klasser.DbSql;
+import com.example.frisoersalonprojekt.Utils.DbSql;
 import com.example.frisoersalonprojekt.Klasser.Service;
 import com.example.frisoersalonprojekt.Main;
 import javafx.collections.FXCollections;

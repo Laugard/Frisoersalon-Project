@@ -1,4 +1,4 @@
-package com.example.frisoersalonprojekt.Klasser;
+package com.example.frisoersalonprojekt.Utils;
 
 public class SessionManager {
     private static int loggedInKundeId = -1;

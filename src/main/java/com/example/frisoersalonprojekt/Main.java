@@ -1,6 +1,6 @@
 package com.example.frisoersalonprojekt;
 
-import com.example.frisoersalonprojekt.Klasser.DbSql;
+import com.example.frisoersalonprojekt.Utils.DbSql;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

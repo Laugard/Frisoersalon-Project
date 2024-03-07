@@ -1,6 +1,6 @@
 package com.example.frisoersalonprojekt.Controller;
 
-import com.example.frisoersalonprojekt.Klasser.DbSql;
+import com.example.frisoersalonprojekt.Utils.DbSql;
 import com.example.frisoersalonprojekt.Klasser.Tidsbestilling;
 import com.example.frisoersalonprojekt.Main;
 import javafx.collections.FXCollections;
@@ -16,11 +16,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Optional;
-import java.util.List;
-import java.util.ArrayList;
-import java.sql.Timestamp;
-
-
 
 
 public class RedigerTid {
