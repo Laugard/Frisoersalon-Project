@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@StyleSheet.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frisoersalonprojekt.Controller.OpretMedarbejder">
+<AnchorPane prefHeight="800.0" styleClass="left-form" prefWidth="1200.0" stylesheets="@StyleSheet.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.frisoersalonprojekt.Controller.OpretMedarbejder">
    <children>
 
 
@@ -56,8 +56,4 @@
       <TextField fx:id="OpretFornavnTF" layoutX="578.0" layoutY="200.0" prefHeight="40.0" prefWidth="250.0" />
 
    </children>
-   <styleClass>
-      <String fx:value="text-field-style" />
-      <String fx:value="left-form" />
-   </styleClass>
 </AnchorPane>

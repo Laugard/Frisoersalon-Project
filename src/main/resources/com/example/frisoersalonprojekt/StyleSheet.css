@@ -1,3 +1,74 @@
+.button-style {
+    -fx-display: inline-block;
+    -fx-outline: none;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-line-height: 1;
+    -fx-border-radius: 500px;
+    -fx-background-radius: 500px;
+    -fx-transition-property: -fx-background-color, -fx-border-color, -fx-text-fill, -fx-effect;
+    -fx-transition-duration: 0.3s;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-letter-spacing: 2px;
+    -fx-min-width: 160px;
+    -fx-text-transform: uppercase;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+    -fx-padding: 16px 14px 18px;
+    -fx-text-fill: #616467;
+    -fx-background-color: transparent;
+    -fx-effect: inset 0 0 0 2px #616467;
+}
+
+.button-style:hover {
+    -fx-text-fill: #fff;
+    -fx-background-color: #616467;
+}
+
+
+.button-style-two {
+    -fx-display: inline-block;
+    -fx-outline: none;
+    -fx-border: none;
+    -fx-cursor: hand;
+    -fx-text-decoration: none;
+    -fx-position: relative;
+    -fx-text-fill: #000;
+    -fx-background-color: #fff;
+    -fx-line-height: 30px;
+    -fx-border-radius: 40px;
+    -fx-padding: 20px;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-box-shadow: rgba(255, 198, 0, 1) -2px -2px 0px 2px, rgba(246, 84, 174, 1) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
+    -fx-transition: all 0.2s;
+}
+
+.button-style-two:hover {
+    -fx-box-shadow: rgba(246, 84, 174, 1) -2px -2px 0px 2px, rgba(255, 198, 0, 1) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
+}
+
+.text-field-style {
+    -fx-prompt-text-fill: #A0A0A0;
+    -fx-text-inner-color: #000;
+    -fx-background-color: #F0F0F0;
+    -fx-border-color: #D0D0D0;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial", sans-serif;
+}
+
+.text-field-style:hover {
+    -fx-background-color: #E0E0E0;
+}
+
+.text-field-style:focused {
+    -fx-border-color: #4DA0B0;
+    -fx-background-color: #ECF6F7;
+}
 .text-field-style {
     -fx-padding: 4; /* Adjust padding size to control the black border thickness */
     -fx-background-color: black, white; /* First layer is black (padding), second is white (actual background) */
