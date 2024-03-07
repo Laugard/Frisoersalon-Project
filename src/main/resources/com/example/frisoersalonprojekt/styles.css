@@ -75,8 +75,3 @@ TableColumn:empty {
     -fx-opacity: 0;
     -fx-height: 0px;
 }
-
-/* Checked touch styles */
-#touch:pressed + .slide {
-    -fx-height: 300px;
-}

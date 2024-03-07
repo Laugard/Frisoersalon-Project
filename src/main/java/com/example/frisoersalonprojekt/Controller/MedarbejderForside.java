@@ -1,65 +1,61 @@
 package com.example.frisoersalonprojekt.Controller;
 
-import com.example.frisoersalonprojekt.Utils.DbSql;
 import com.example.frisoersalonprojekt.Main;
-import javafx.beans.property.ReadOnlyStringWrapper;
+import com.example.frisoersalonprojekt.Utils.UseCase;
+import com.example.frisoersalonprojekt.Klasser.Tidsbestilling;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import java.sql.Timestamp;
-import java.util.List;
+import javafx.beans.property.ReadOnlyStringWrapper;
+
 import java.io.IOException;
 import java.sql.SQLException;
-
+import java.sql.Timestamp;
+import java.util.List;
 
 public class MedarbejderForside {
 
     @FXML
     private Button LogUdBtn;
-
     @FXML
-    private TableView<com.example.frisoersalonprojekt.Klasser.Tidsbestilling> medarbejderTableView;
+    private TableView<Tidsbestilling> medarbejderTableView;
     @FXML
-    private TableColumn<com.example.frisoersalonprojekt.Klasser.Tidsbestilling, String> datoColumn;
+    private TableColumn<Tidsbestilling, String> datoColumn;
     @FXML
-    private TableColumn<com.example.frisoersalonprojekt.Klasser.Tidsbestilling, String> tidColumn;
+    private TableColumn<Tidsbestilling, String> tidColumn;
     @FXML
-    private TableColumn<com.example.frisoersalonprojekt.Klasser.Tidsbestilling, String> serviceColumn;
+    private TableColumn<Tidsbestilling, String> serviceColumn;
 
+    private UseCase useCase;
 
-
-    private DbSql dbSql = new DbSql();
-
-    public MedarbejderForside() throws SQLException {
+    public MedarbejderForside() {
+        this.useCase = new UseCase();
     }
 
+    @FXML
+    public void initialize() throws SQLException {
+        loadTidsbestillinger();
+    }
 
-    public void initialize() {
-        try {
-            DbSql db = new DbSql(); // Husk at håndtere SQLException her eller i konstruktøren
-            List<com.example.frisoersalonprojekt.Klasser.Tidsbestilling> tidsbestillinger = db.hentTidsbestillingerForMedarbejder();
+    private void loadTidsbestillinger() throws SQLException {
+        List<Tidsbestilling> tidsbestillinger = useCase.hentTidsbestillingerForMedarbejder();
 
-            datoColumn.setCellValueFactory(cellData -> {
-                Timestamp ts = cellData.getValue().getTidspunkt();
-                return new ReadOnlyStringWrapper(new java.text.SimpleDateFormat("dd-MM-yyyy").format(ts));
-            });
+        datoColumn.setCellValueFactory(cellData -> {
+            Timestamp ts = cellData.getValue().getTidspunkt();
+            return new ReadOnlyStringWrapper(new java.text.SimpleDateFormat("dd-MM-yyyy").format(ts));
+        });
 
-            tidColumn.setCellValueFactory(cellData -> {
-                Timestamp ts = cellData.getValue().getTidspunkt();
-                return new ReadOnlyStringWrapper(new java.text.SimpleDateFormat("HH:mm").format(ts));
-            });
+        tidColumn.setCellValueFactory(cellData -> {
+            Timestamp ts = cellData.getValue().getTidspunkt();
+            return new ReadOnlyStringWrapper(new java.text.SimpleDateFormat("HH:mm").format(ts));
+        });
 
-            serviceColumn.setCellValueFactory(new PropertyValueFactory<>("serviceNavn"));
+        serviceColumn.setCellValueFactory(new PropertyValueFactory<>("serviceNavn"));
 
-            medarbejderTableView.getItems().setAll(tidsbestillinger);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Håndter fejl, f.eks. vis en dialogboks til brugeren
-        }
+        medarbejderTableView.getItems().setAll(tidsbestillinger);
     }
 
     @FXML
@@ -68,16 +64,4 @@ public class MedarbejderForside {
         m.changeScene("Startside.fxml");
         System.out.println("Du er nu logget af");
     }
-
-
-
-
-
-
 }
-
-
-
-
-
-

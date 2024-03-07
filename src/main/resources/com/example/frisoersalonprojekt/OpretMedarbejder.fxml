@@ -45,15 +45,15 @@
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Label>
-            <TextField fx:id="OpretFornavnTF" layoutX="579.0" layoutY="200.0" prefHeight="40.0" prefWidth="250.0" AnchorPane.bottomAnchor="561.0" AnchorPane.topAnchor="200.0" />
             <TextField fx:id="OpretEfternavnTF" layoutX="579.0" layoutY="250.0" prefHeight="40.0" prefWidth="250.0" AnchorPane.topAnchor="247.0" />
             <TextField fx:id="OpretTelefonTF" layoutX="579.0" layoutY="300.0" prefHeight="40.0" prefWidth="250.0" AnchorPane.topAnchor="298.0" />
             <TextField fx:id="OpretEmailTF" layoutX="579.0" layoutY="350.0" prefHeight="40.0" prefWidth="250.0" />
             <TextField fx:id="OpretAdminTF" layoutX="579.0" layoutY="400.0" prefHeight="40.0" prefWidth="250.0" />
             <TextField fx:id="OpretBrugernavnTF" layoutX="579.0" layoutY="450.0" prefHeight="40.0" prefWidth="250.0" />
             <TextField fx:id="OpretAdgangskodeTF" layoutX="579.0" layoutY="500.0" prefHeight="40.0" prefWidth="250.0" />
-            <Button fx:id="opretBrugerbtn" layoutX="483.0" layoutY="590.0" mnemonicParsing="false" onAction="#opretMedarbejderHandler" prefHeight="30.0" prefWidth="190.0" text="Opret bruger" />
+            <Button fx:id="opretBrugerbtn" layoutX="483.0" layoutY="590.0" mnemonicParsing="false" onAction="#opretMedarbejderHandler" prefHeight="30.0" prefWidth="190.0" text="Opret medarbejder" />
       <Button fx:id="tilbageTilForsideBtn" layoutX="484.0" layoutY="678.0" mnemonicParsing="false" onAction="#tilbageTilForside" prefHeight="30.0" prefWidth="190.0" text="Tilbage til forsiden" />
+      <TextField fx:id="OpretFornavnTF" layoutX="578.0" layoutY="200.0" prefHeight="40.0" prefWidth="250.0" />
 
    </children>
    <styleClass>

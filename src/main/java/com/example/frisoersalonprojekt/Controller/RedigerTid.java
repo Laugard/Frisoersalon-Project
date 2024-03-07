@@ -3,6 +3,7 @@ package com.example.frisoersalonprojekt.Controller;
 import com.example.frisoersalonprojekt.Utils.DbSql;
 import com.example.frisoersalonprojekt.Klasser.Tidsbestilling;
 import com.example.frisoersalonprojekt.Main;
+import com.example.frisoersalonprojekt.Utils.UseCase;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.DatePicker;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.List;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -43,30 +45,24 @@ public class RedigerTid {
     private Button tilbageTilForsideBtn;
 
 
-    private DbSql dbSql = new DbSql();
+    private UseCase useCase;
 
-    public RedigerTid() throws SQLException {
+    public RedigerTid() {
+        this.useCase = new UseCase(); // Håndter eventuelle exceptions som nødvendigt
     }
 
-    public void initialize() {
+    @FXML
+    public void initialize() throws SQLException {
         datoPicker.setOnAction(event -> opdaterTilgængeligeTidspunkter());
-        bindTableColumns(); // Sørg for at kalde denne metode for at binde tabelkolonner
-        loadTidsbestillinger(); // Dette sikrer, at data indlæses ved opstart
+        bindTableColumns();
+        loadTidsbestillinger();
     }
-
-
 
     private void opdaterTilgængeligeTidspunkter() {
         if (datoPicker.getValue() != null) {
             LocalDate valgtDato = datoPicker.getValue();
-            // Antagelse: medarbejderId er fastsat. Erstat med faktisk logik for at hente valgt medarbejderId.
-            int medarbejderId = 1; // Eksempelværdi, erstattes med faktisk logik
-
-            List<Timestamp> ledigeTidspunkter = dbSql.hentLedigeTidspunkter(medarbejderId, valgtDato);
-            tidspunktComboBox.setItems(FXCollections.observableArrayList(ledigeTidspunkter));
-            if (!ledigeTidspunkter.isEmpty()) {
-                tidspunktComboBox.getSelectionModel().selectFirst();
-            }
+            int medarbejderId = 1; // Eksempel, skal erstattes med faktisk logik
+            tidspunktComboBox.setItems(FXCollections.observableArrayList(useCase.hentLedigeTidspunkter(medarbejderId, valgtDato)));
         }
     }
 
@@ -94,63 +90,61 @@ public class RedigerTid {
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 
-
-
+    private void loadTidsbestillinger() throws SQLException {
+        serviceTabel.setItems(FXCollections.observableArrayList(useCase.hentAlleTidsbestillinger()));
+    }
 
     @FXML
-    private void aflysTidsbestilling() {
+    private void aflysTidsbestilling() throws SQLException {
         Tidsbestilling valgtTidsbestilling = serviceTabel.getSelectionModel().getSelectedItem();
         if (valgtTidsbestilling != null) {
-            // Opret en bekræftelsesdialog
-            Alert bekræftelsesDialog = new Alert(Alert.AlertType.CONFIRMATION);
-            bekræftelsesDialog.setTitle("Bekræft Aflysning");
-            bekræftelsesDialog.setHeaderText("Aflys tidsbestilling");
-            bekræftelsesDialog.setContentText("Er du sikker på, at du vil aflyse den valgte tidsbestilling?");
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Er du sikker på, at du vil aflyse denne tidsbestilling?", ButtonType.YES, ButtonType.NO);
+            confirmationAlert.setHeaderText("Bekræft Aflysning");
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
+            if (result.get() == ButtonType.YES) {
+                useCase.opdaterStatusTilAflyst(valgtTidsbestilling.getTidsbestillingsId());
+                loadTidsbestillinger(); // Genindlæs tidsbestillinger for at opdatere visningen
+                showAlert("Aflysning", "Tidsbestillingen er blevet aflyst.");
+                System.out.println("Tidsbestilling aflyst");
 
-            // Venter på brugerens respons
-            Optional<ButtonType> resultat = bekræftelsesDialog.showAndWait();
-            if (resultat.isPresent() && resultat.get() == ButtonType.OK) {
-                // Brugeren bekræftede, at de ønsker at aflyse tidsbestillingen
-                dbSql.opdaterStatusTilAflyst(valgtTidsbestilling.getTidsbestillingsId());
-                valgtTidsbestilling.setStatus("Aflyst");
-                serviceTabel.refresh(); // Opdaterer tabellen for at vise den nye status
             }
         } else {
-            // Viser en advarsel, hvis ingen tidsbestilling er valgt
-            Alert advarselsDialog = new Alert(Alert.AlertType.WARNING);
-            advarselsDialog.setTitle("Ingen Tidsbestilling Valgt");
-            advarselsDialog.setHeaderText(null);
-            advarselsDialog.setContentText("Vælg venligst en tidsbestilling at aflyse.");
-            advarselsDialog.showAndWait();
+            showAlert("Ingen Valg", "Vælg venligst en tidsbestilling for at aflyse.");
+            System.out.println("Tidsbestilling ikke aflyst");
+
         }
-    }
-
-
-    private void loadTidsbestillinger() {
-        // Antager en metode i DbSql klassen der returnerer en liste af Tidsbestilling objekter
-        List<Tidsbestilling> tidsbestillinger = dbSql.hentAlleTidsbestillinger(); // Denne metode skal implementeres i DbSql
-        serviceTabel.setItems(FXCollections.observableArrayList(tidsbestillinger));
     }
 
 
     @FXML
-    private void gemTidsbestillingÆndringer() {
+    private void gemTidsbestillingÆndringer() throws SQLException {
         Tidsbestilling valgtTidsbestilling = serviceTabel.getSelectionModel().getSelectedItem();
         if (valgtTidsbestilling != null && datoPicker.getValue() != null && tidspunktComboBox.getValue() != null) {
-            Timestamp nyTidspunkt = tidspunktComboBox.getValue();
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Er du sikker på, at du vil gemme ændringerne til denne tidsbestilling?", ButtonType.YES, ButtonType.NO);
+            confirmationAlert.setHeaderText("Bekræft Ændring");
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
+            if (result.get() == ButtonType.YES) {
+                Timestamp nyTidspunkt = tidspunktComboBox.getValue();
+                useCase.opdaterTidsbestillingTidspunkt(valgtTidsbestilling.getTidsbestillingsId(), nyTidspunkt);
+                loadTidsbestillinger(); // Genindlæs tidsbestillinger for at opdatere visningen
+                showAlert("Ændring Gemt", "Ændringerne til tidsbestillingen er blevet gemt.");
+                System.out.println("Ny tidsbestilling gemt");
 
-            dbSql.opdaterTidsbestillingTidspunkt(valgtTidsbestilling.getTidsbestillingsId(), nyTidspunkt);
-
-            valgtTidsbestilling.setTidspunkt(nyTidspunkt);
-            serviceTabel.refresh();
+            }
         } else {
-            // Vis en advarsel hvis noget gik galt
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Ingen Tidsbestilling Valgt");
-            alert.setHeaderText(null);
-            alert.setContentText("Vælg venligst en tidsbestilling og et nyt tidspunkt.");
-            alert.showAndWait();
+            showAlert("Ingen Valg", "Vælg venligst en tidsbestilling og et nyt tidspunkt.");
+            System.out.println("Ny tidsbestilling ikke gemt");
+
         }
+    }
+
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 
@@ -160,7 +154,5 @@ public class RedigerTid {
         m.changeScene("Forside.fxml");
 
     }
-
-
 }
 

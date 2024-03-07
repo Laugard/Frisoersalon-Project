@@ -16,8 +16,15 @@ import java.util.Map;
 public class UseCase {
     private DbSql dbSql;
 
-    public UseCase() throws SQLException {
-        this.dbSql = new DbSql();
+    public UseCase() {
+        try {
+            this.dbSql = new DbSql();
+        } catch (SQLException e) {
+            // Log fejlen, vis en fejlmeddelelse, eller på anden vis håndter exceptionen
+            e.printStackTrace();
+            // Eventuelt sæt dbSql til null eller initialiser den til en standardtilstand
+            this.dbSql = null; // Overvej dette, kun hvis det giver mening i din applikations kontekst
+        }
     }
 
 
@@ -96,12 +103,12 @@ public class UseCase {
     }
 
 
-    public boolean opretTidsbestilling(int kundeId, int medarbejderId, int serviceId, Timestamp tidspunkt) throws SQLException {
-        return dbSql.opretTidsbestilling(kundeId, medarbejderId, serviceId, tidspunkt);
+    public boolean opretTidsbestilling(int kundeId, int medarbejderId, int serviceId, Timestamp valgtTidspunkt) {
+        return dbSql.opretTidsbestilling(kundeId, medarbejderId, serviceId, valgtTidspunkt);
     }
 
-    public List<Timestamp> hentLedigeTidspunkter(int medarbejderId, LocalDate dato) throws SQLException {
-        return dbSql.hentLedigeTidspunkter(medarbejderId, dato);
+    public ObservableList<Timestamp> hentLedigeTidspunkter(int medarbejderId, LocalDate dato) {
+        return FXCollections.observableArrayList(dbSql.hentLedigeTidspunkter(medarbejderId, dato));
     }
 
     public List<Tidsbestilling> hentAlleTidsbestillinger() throws SQLException {
@@ -127,9 +134,13 @@ public class UseCase {
     public Map<String, Integer> hentMedarbejdereMedId() throws SQLException {
         return dbSql.hentMedarbejdereMedId();
     }
+    public ObservableList<String> hentMedarbejdereMedNavne() {
+        Map<String, Integer> medarbejderMap = dbSql.hentMedarbejdereMedId();
+        return FXCollections.observableArrayList(medarbejderMap.keySet());
+    }
 
-    public List<String> hentServiceNavneMedPriser() throws SQLException {
-        return dbSql.hentServiceNavneMedPriser();
+    public ObservableList<String> hentServiceNavneMedPriser() {
+        return FXCollections.observableArrayList(dbSql.hentServiceNavneMedPriser());
     }
 
     public int findServiceId(String serviceItem) throws SQLException {
@@ -139,6 +150,4 @@ public class UseCase {
     public List<Tidsbestilling> hentTidsbestillingerForMedarbejder() throws SQLException {
         return dbSql.hentTidsbestillingerForMedarbejder();
     }
-
-    // Yderligere metoder kan tilføjes her, baseret på dine behov
 }
