@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -25,14 +26,15 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <TableView fx:id="TiderTable" layoutX="131.0" layoutY="166.0" prefHeight="468.0" prefWidth="539.0">
+            <TableView fx:id="medarbejderTableView" editable="true" layoutX="38.0" layoutY="172.0" opacity="0.79" prefHeight="559.0" prefWidth="699.0">
                <columns>
-                  <TableColumn prefWidth="106.0" text="Mandag" />
-                  <TableColumn prefWidth="93.0" text="Tirsdag" />
-                  <TableColumn prefWidth="103.0" text="Onsdag" />
-                  <TableColumn minWidth="0.0" prefWidth="118.0" text="Torsdag" />
-                  <TableColumn prefWidth="118.0" text="Fredag" />
+                  <TableColumn fx:id="datoColumn" prefWidth="215.0" text="Dato" />
+                  <TableColumn fx:id="tidColumn" prefWidth="208.0" text="Tid" />
+                  <TableColumn fx:id="serviceColumn" prefWidth="343.0" text="Service" />
                </columns>
+               <effect>
+                  <DropShadow />
+               </effect>
             </TableView>
          </children>
       </AnchorPane>
