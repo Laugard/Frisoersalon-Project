@@ -11,16 +11,23 @@ public class Medarbejder {
     private String brugernavn;
     private String adgangskode;
 
-    public Medarbejder(int medarbejderId, String medarbejderFornavn, String medarbejderEfternavn, String medarbejderEmail, String medarbejderTelefon, boolean admin, String brugernavn, String adgangskode) {
-        this.medarbejderId = medarbejderId;
+    public Medarbejder(String medarbejderFornavn, String medarbejderEfternavn, String medarbejderTelefon, String medarbejderEmail, boolean admin, String brugernavn, String adgangskode) {
         this.medarbejderFornavn = medarbejderFornavn;
         this.medarbejderEfternavn = medarbejderEfternavn;
-        this.medarbejderEmail = medarbejderEmail;
         this.medarbejderTelefon = medarbejderTelefon;
+        this.medarbejderEmail = medarbejderEmail;
         this.admin = admin;
         this.brugernavn = brugernavn;
         this.adgangskode = adgangskode;
     }
+
+    // Konstruktør med medarbejderId (til indlæsning af eksisterende medarbejdere)
+    public Medarbejder(int medarbejderId, String medarbejderFornavn, String medarbejderEfternavn, String medarbejderTelefon, String medarbejderEmail, boolean admin, String brugernavn, String adgangskode) {
+        this(medarbejderFornavn, medarbejderEfternavn, medarbejderTelefon, medarbejderEmail, admin, brugernavn, adgangskode); // Kalder den anden konstruktør
+        this.medarbejderId = medarbejderId;
+    }
+
+
 
     public int getMedarbejderId() {
         return medarbejderId;

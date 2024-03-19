@@ -9,7 +9,6 @@ import javafx.collections.ObservableList;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +36,6 @@ public class UseCase {
         } else {
             System.out.println("Der opstod en fejl under oprettelsen af kunden.");
         }
-
         return success;
     }
 
@@ -80,18 +78,19 @@ public class UseCase {
 
 
     public boolean opretMedarbejder(String fornavn, String efternavn, String telefon, String email, boolean admin, String brugernavn, String adgangskode) {
-        // Kalder dbSql.opretMedarbejder og returnerer resultatet
-        boolean success = dbSql.opretMedarbejder(fornavn, efternavn, telefon, email, admin, brugernavn, adgangskode);
-
-        // Feedback til brugeren via konsollen (kan ændres til GUI feedback hvis ønsket)
+        // Opretter et Medarbejder objekt uden medarbejderId
+        Medarbejder nyMedarbejder = new Medarbejder(fornavn, efternavn, telefon, email, admin, brugernavn, adgangskode);
+        boolean success = dbSql.opretMedarbejder(nyMedarbejder);
         if (success) {
             System.out.println("Medarbejder oprettet succesfuldt.");
-
         } else {
             System.out.println("Der opstod en fejl under oprettelsen af medarbejderen.");
         }
         return success;
     }
+
+
+
 
     public ObservableList<Medarbejder> hentMedarbejdere() {
         return FXCollections.observableArrayList(dbSql.hentMedarbejdere());

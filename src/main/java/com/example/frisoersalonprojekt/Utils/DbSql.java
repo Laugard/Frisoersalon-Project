@@ -142,23 +142,24 @@ public class DbSql {
     }
 
 
-    public boolean opretMedarbejder(String fornavn, String efternavn, String telefon, String email, boolean admin, String brugernavn, String adgangskode) {
+    public boolean opretMedarbejder(Medarbejder medarbejder) {
         String sql = "INSERT INTO Medarbejdere (medarbejderFornavn, medarbejderEfternavn, medarbejderTelefon, medarbejderEmail, admin, brugernavn, adgangskode) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-            pstmt.setString(1, fornavn);
-            pstmt.setString(2, efternavn);
-            pstmt.setString(3, telefon);
-            pstmt.setString(4, email);
-            pstmt.setBoolean(5, admin);
-            pstmt.setString(6, brugernavn);
-            pstmt.setString(7, adgangskode);
+            pstmt.setString(1, medarbejder.getMedarbejderFornavn());
+            pstmt.setString(2, medarbejder.getMedarbejderEfternavn());
+            pstmt.setString(3, medarbejder.getMedarbejderTelefon());
+            pstmt.setString(4, medarbejder.getMedarbejderEmail());
+            pstmt.setBoolean(5, medarbejder.isAdmin());
+            pstmt.setString(6, medarbejder.getBrugernavn());
+            pstmt.setString(7, medarbejder.getAdgangskode());
             int affectedRows = pstmt.executeUpdate();
-            return affectedRows > 0; // Returnerer true, hvis en eller flere rækker er påvirket
+            return affectedRows > 0;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false; // Returnerer false, hvis der opstår en fejl
+            return false;
         }
     }
+
 
 
 
